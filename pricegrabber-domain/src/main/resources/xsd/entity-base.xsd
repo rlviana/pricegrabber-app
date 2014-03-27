@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/entity" 
+            targetNamespace="http://pricegrabber.rlviana.net/domain/entity"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="entity-base">
+		<xs:sequence>
+			<xs:element name="lock-version" type="xs:int" nillable="true" minOccurs="1"/>
+        </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="id-entity-base">
+		<xs:complexContent>
+		<xs:extension base="tns:entity-base">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" nillable="false"/>
+        </xs:sequence>
+        </xs:extension>
+        </xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="cod-entity-base">
+	<xs:complexContent>
+		<xs:extension base="tns:entity-base">
+		<xs:sequence>
+			<xs:element name="cod" nillable="false">
+			<xs:simpleType>
+    			<xs:restriction base="xs:string">
+      			<xs:maxLength value = "4"/>
+    			</xs:restriction>
+  			</xs:simpleType>
+  		</xs:element>
+        </xs:sequence>
+        </xs:extension>
+        </xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

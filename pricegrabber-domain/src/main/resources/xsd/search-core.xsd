@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/search/core"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://pricegrabber.rlviana.net/domain/search"
+	version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/search/core">
+
+	<xs:import namespace="http://pricegrabber.rlviana.net/domain/search"
+		schemaLocation="search-base.xsd" />
+
+	<xs:complexType name="item-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="item-type-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="site-item-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="site-cod" type="xs:string" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="site-item-datum-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="site-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="promotion-search-criteria">
+		<xs:complexContent>
+			<xs:extension base="base:abstract-search-criteria">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="url" type="xs:string" minOccurs="0" />
+					<xs:element name="active" type="xs:boolean" minOccurs="0" />
+					<xs:element name="begin-date" type="xs:dateTime"
+						minOccurs="0" />
+					<xs:element name="end-date" type="xs:dateTime"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="item-search-criteria" type="tns:item-search-criteria" />
+	<xs:element name="item-type-search-criteria" type="tns:item-type-search-criteria" />
+	<xs:element name="site-item-search-criteria" type="tns:site-item-search-criteria" />
+	<xs:element name="site-item-datum-search-criteria" type="tns:site-item-datum-search-criteria" />
+	<xs:element name="site-search-criteria" type="tns:site-search-criteria" />
+	<xs:element name="promotion-search-criteria" type="tns:promotion-search-criteria" />
+
+</xs:schema>

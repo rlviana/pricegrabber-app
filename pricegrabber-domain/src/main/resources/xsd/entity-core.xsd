@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/entity/core"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:model="http://pricegrabber.rlviana.net/domain/entity"
+	xmlns:common="http://pricegrabber.rlviana.net/domain/entity/common"
+	version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/entity/core">
+	
+	<xs:import namespace="http://pricegrabber.rlviana.net/domain/entity"
+		schemaLocation="entity-base.xsd" />
+	<xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/common"
+		schemaLocation="entity-common.xsd" />
+		
+
+	<xs:simpleType name="price-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REGULAR_PRICE" />
+			<xs:enumeration value="DISCOUNT_PRICE" />
+			<xs:enumeration value="SPECIAL_PRICE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="item">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" minOccurs="0"/>
+				<xs:element name="description" type="xs:string" minOccurs="0"/>
+				<xs:element name="item-type" type="tns:item-type" minOccurs="0"/>
+			</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="item-type">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+			<xs:sequence>
+				<xs:element name="code" type="xs:string" minOccurs="0"/>
+				<xs:element name="name" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="site-item">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="site-cod" type="xs:string" minOccurs="0" />
+					<xs:element name="item-type" type="tns:item-type" minOccurs="0"/>
+					<xs:element name="url" type="xs:string" minOccurs="0" />
+					<xs:element name="promotions" type="tns:promotion" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="site-item-datums" type="tns:site-item-datum" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="current-price" type="tns:site-item-price" minOccurs="0"/>					
+					<xs:element name="lowest-price" type="tns:site-item-price" minOccurs="0"/>										
+					<xs:element name="highest-price" type="tns:site-item-price" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="site-item-price">
+		<xs:sequence>
+					<xs:element name="price-currency" type="common:currency" minOccurs="0" />
+					<xs:element name="price-date" type="xs:dateTime" minOccurs="0" />
+					<xs:element name="price-value" type="xs:decimal" minOccurs="0" />
+		</xs:sequence>					
+	</xs:complexType>
+
+	
+	<xs:complexType name="site-item-datum">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+				<xs:sequence>
+					<xs:element name="availability" type="xs:string" minOccurs="0"/>				
+					<xs:element name="price-type" type="tns:price-type" minOccurs="0" />
+					<xs:element name="price-currency" type="common:currency" minOccurs="0" />
+					<xs:element name="price-date" type="xs:dateTime" minOccurs="0" />
+					<xs:element name="price-value" type="xs:decimal" minOccurs="0" />
+					<xs:element name="site-item" type="tns:site-item" minOccurs="0"/>					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	
+	<xs:complexType name="site">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="url" type="xs:string" minOccurs="0" />
+					<xs:element name="country" type="common:country" minOccurs="0"/>
+					<xs:element name="base-currrency" type="common:currency" minOccurs="0"/>
+					<xs:element name="promotions" type="tns:promotion" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="site-items" type="tns:site-item" minOccurs="0" maxOccurs="unbounded"/>					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="promotion">
+		<xs:complexContent>
+			<xs:extension base="model:id-entity-base">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="url" type="xs:string" minOccurs="0" />
+					<xs:element name="active" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="begin-date" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="end-date" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="site-items" type="tns:site-item" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="item" type="tns:item"/>
+	<xs:element name="item-type" type="tns:item-type"/>
+	<xs:element name="site" type="tns:site"/>
+	<xs:element name="promotion" type="tns:promotion"/>
+	<xs:element name="site-item" type="tns:site-item"/>
+	<xs:element name="site-item-datum" type="tns:site-item-datum"/>
+</xs:schema>
