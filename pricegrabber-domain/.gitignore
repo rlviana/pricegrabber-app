@@ -1,0 +1,13 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+.metadata/
+ 
+# PMD files
+.pmd
+reports/
+
+#Generated folders
+target/
+bin/

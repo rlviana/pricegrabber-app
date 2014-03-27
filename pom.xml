@@ -369,5 +369,6 @@
    </build>
    <modules>
       <module>pricegrabber-model</module>
+      <module>pricegrabber-domain</module>
    </modules>
 </project>
