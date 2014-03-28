@@ -15,6 +15,8 @@
    <!-- Build properties -->
    <properties>
       <!-- JAXB Tools plugins -->
+      <plugin.jaxb2.codehaus.version>1.6</plugin.jaxb2.codehaus.version>
+      <plugin.jaxb2.jvnet.version>0.8.3</plugin.jaxb2.jvnet.version>
       <plugin.jaxb2.version>1.6</plugin.jaxb2.version>
       <plugin.jaxws.version>2.2.1</plugin.jaxws.version>
       <plugin.jaxb2-basics.version>0.6.5</plugin.jaxb2-basics.version>
@@ -38,7 +40,7 @@
       <!-- CGlib -->
       <cglib.version>2.2.2</cglib.version>
       <maven-checkstyle-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>
-      <maven-pmd-plugin.configLocation>${project.build.directory}/generated-config/config/pmd/pmd-ruleset.xml</maven-pmd-plugin.configLocation> 
+      <maven-pmd-plugin.configLocation>${project.build.directory}/generated-config/config/pmd/pmd-ruleset.xml</maven-pmd-plugin.configLocation>
       <maven.findbugs-include-plugin.configLocation></maven.findbugs-include-plugin.configLocation>
       <maven.findbugs-exclude-plugin.configLocation>${project.build.directory}/generated-config/config/findbugs/findbugs-exclude.xml</maven.findbugs-exclude-plugin.configLocation>
       <!-- Git access -->
@@ -126,7 +128,7 @@
             <artifactId>cglib-nodep</artifactId>
             <version>${cglib.version}</version>
          </dependency>
-         <!-- Bridges for slf4j-->
+         <!-- Bridges for slf4j -->
          <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -220,15 +222,15 @@
             <artifactId>derby</artifactId>
             <version>${derby.version}</version>
             <scope>test</scope>
-        </dependency>
-        <!-- Client JDBC driver -->
-        <dependency>
+         </dependency>
+         <!-- Client JDBC driver -->
+         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
             <version>${derby.version}</version>
             <scope>test</scope>
-        </dependency>
-        <!-- JEtty dependency -->
+         </dependency>
+         <!-- JEtty dependency -->
          <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
@@ -291,12 +293,17 @@
             <plugin>
                <groupId>org.jvnet.jaxb2.maven2</groupId>
                <artifactId>maven-jaxb2-plugin</artifactId>
-               <version>${plugin.jaxb2.version}</version>
+               <version>${plugin.jaxb2.jvnet.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>jaxb2-maven-plugin</artifactId>
+               <version>${plugin.jaxb2.codehaus.version}</version>
             </plugin>
          </plugins>
       </pluginManagement>
       <plugins>
-               <!-- Unit tests -->
+         <!-- Unit tests -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
@@ -357,8 +364,8 @@
                   </goals>
                   <configuration>
                      <outputDirectory>${project.build.directory}/generated-config</outputDirectory>
-                     <includeGroupIds>net.rlviana.build</includeGroupIds>                     
-                    <includeArtifacIds>build-qa</includeArtifacIds>
+                     <includeGroupIds>net.rlviana.build</includeGroupIds>
+                     <includeArtifacIds>build-qa</includeArtifacIds>
                      <excludeTransitive>true</excludeTransitive>
                      <overWriteIfNewer>true</overWriteIfNewer>
                   </configuration>

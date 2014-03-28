@@ -1,157 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response/core"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:response="http://pricegrabber.rlviana.net/domain/response"
-	xmlns:core="http://pricegrabber.rlviana.net/domain/entity/core"
-	version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/response/core">
-
-	<xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/core"
-		schemaLocation="entity-core.xsd" />
-	<xs:import namespace="http://pricegrabber.rlviana.net/domain/response"
-		schemaLocation="response-base.xsd" />
-
-
-	<xs:complexType name="site-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site" nillable="true"
-						minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="site-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site" minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="promotion-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:promotion"
-						nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="promotion-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:promotion"
-						minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="item-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:item" nillable="true"
-						minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="item-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:item" minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="item-type-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:item-type"
-						nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="item-type-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:item-type"
-						minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="site-item-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site-item"
-						nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="site-item-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site-item"
-						minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="site-item-datum-find-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-find-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site-item-datum"
-						nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="site-item-datum-response">
-		<xs:complexContent>
-			<xs:extension base="response:abstract-entity-response-result">
-				<xs:sequence>
-					<xs:element name="results" type="core:site-item-datum"
-						minOccurs="0"></xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:element name="site-response" type="tns:site-response" />
-	<xs:element name="site-find-response" type="tns:site-find-response" />
-	<xs:element name="site-item-response" type="tns:site-item-response" />
-	<xs:element name="site-item-find-response" type="tns:site-item-find-response" />
-	<xs:element name="site-item-datum-response" type="tns:site-item-datum-response" />
-	<xs:element name="site-item-datum-find-response" type="tns:site-item-datum-find-response" />
-	<xs:element name="item-response" type="tns:item-response" />
-	<xs:element name="item-find-response" type="tns:item-find-response" />
-	<xs:element name="promotion-response" type="tns:promotion-response" />
-	<xs:element name="promotion-find-response" type="tns:promotion-find-response" />
-	<xs:element name="item-type-response" type="tns:item-type-response" />
-	<xs:element name="item-type-find-response" type="tns:item-type-find-response" />
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response/core" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:response="http://pricegrabber.rlviana.net/domain/response" xmlns:core="http://pricegrabber.rlviana.net/domain/entity/core"
+   version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/response/core"
+   elementFormDefault="qualified">
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/core"
+      schemaLocation="entity-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response" schemaLocation="response-base.xsd"/>
+   <xs:complexType name="site-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:sites"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="site-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:site" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="promotion-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:promotions"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="promotion-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:promotion" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="item-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:items"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="item-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:item" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="item-type-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:item-types"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="item-type-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:item-type" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="site-item-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:site-items"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="site-item-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:site-item" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="site-item-datum-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:site-item-data"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="site-item-datum-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="core:site-item-datum" minOccurs="0"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   
+   <xs:complexType name="sites">
+            <xs:sequence>
+                <xs:element ref="core:site" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="site-items">
+            <xs:sequence>
+                <xs:element ref="core:site-item" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="site-item-data">
+            <xs:sequence>
+                <xs:element ref="core:site-item-datum" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="promotions">
+            <xs:sequence>
+                <xs:element ref="core:promotion" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="items">
+            <xs:sequence>
+                <xs:element ref="core:item" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="item-types">
+            <xs:sequence>
+                <xs:element ref="core:item-type" maxOccurs="unbounded"/>
+            </xs:sequence>
+   </xs:complexType>
 
 
+
+
+   <xs:element name="sites" type="tns:sites"/>
+   <xs:element name="site-items" type="tns:site-items"/>
+   <xs:element name="site-item-data" type="tns:site-item-data"/>
+   <xs:element name="items" type="tns:items"/>
+   <xs:element name="promotions" type="tns:promotions"/>
+   <xs:element name="item-types" type="tns:item-types"/>
+   
+   <xs:element name="site-response" type="tns:site-response"/>
+   <xs:element name="site-find-response" type="tns:site-find-response"/>
+   <xs:element name="site-item-response" type="tns:site-item-response"/>
+   <xs:element name="site-item-find-response" type="tns:site-item-find-response"/>
+   <xs:element name="site-item-datum-response" type="tns:site-item-datum-response"/>
+   <xs:element name="site-item-datum-find-response" type="tns:site-item-datum-find-response"/>
+   <xs:element name="item-response" type="tns:item-response"/>
+   <xs:element name="item-find-response" type="tns:item-find-response"/>
+   <xs:element name="promotion-response" type="tns:promotion-response"/>
+   <xs:element name="promotion-find-response" type="tns:promotion-find-response"/>
+   <xs:element name="item-type-response" type="tns:item-type-response"/>
+   <xs:element name="item-type-find-response" type="tns:item-type-find-response"/>
 </xs:schema>

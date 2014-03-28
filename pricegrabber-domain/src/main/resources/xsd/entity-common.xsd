@@ -1,69 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/entity/common"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:model="http://pricegrabber.rlviana.net/domain/entity"
-	version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/entity/common">
-
-	<xs:import namespace="http://pricegrabber.rlviana.net/domain/entity"
-		schemaLocation="entity-base.xsd" />
-
-	<xs:complexType name="country">
-		<xs:complexContent>
-			<xs:extension base="model:cod-entity-base">
-				<xs:sequence>
-					<xs:element name="code" type="xs:string" minOccurs="0">
-					<xs:annotation>
-					<xs:documentation>
-					ISO 3166-1 alfa-2
-					</xs:documentation>
-					</xs:annotation>
-					</xs:element>
-					<xs:element name="name" type="xs:string"
-						minOccurs="0" />
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	
-
-	<xs:complexType name="currency">
-		<xs:complexContent>
-			<xs:extension base="model:cod-entity-base">
-				<xs:sequence>
-					<xs:element name="code" type="xs:string" minOccurs="0">
-					<xs:annotation>
-					<xs:documentation>
-					ISO 4217 3 Letter code
-					</xs:documentation>
-					</xs:annotation>
-					</xs:element>
-					<xs:element name="name" type="xs:string"
-						minOccurs="0" />
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-
-	<xs:complexType name="language">
-		<xs:complexContent>
-			<xs:extension base="model:cod-entity-base">
-				<xs:sequence>
-					<xs:element name="code" type="xs:string" minOccurs="0">
-					<xs:annotation>
-					<xs:documentation>
-					ISO 639-1 alfa-2
-					</xs:documentation>
-					</xs:annotation>
-					</xs:element>
-					<xs:element name="name" type="xs:string" minOccurs="0" />
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:element name="language" type="tns:language"/>	
-	<xs:element name="currency" type="tns:currency"/>
-	<xs:element name="country" type="tns:country"/>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/entity/common" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:model="http://pricegrabber.rlviana.net/domain/entity" version="1.0"
+   targetNamespace="http://pricegrabber.rlviana.net/domain/entity/common" elementFormDefault="qualified">
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity" schemaLocation="entity-base.xsd"/>
+   <xs:complexType name="country">
+      <xs:complexContent>
+         <xs:extension base="model:cod-entity-base">
+            <xs:sequence>
+               <xs:element name="code" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation> ISO 3166-1 alfa-2
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="name" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="currency">
+      <xs:complexContent>
+         <xs:extension base="model:cod-entity-base">
+            <xs:sequence>
+               <xs:element name="code" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation> ISO 4217 3 Letter code
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="name" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="language">
+      <xs:complexContent>
+         <xs:extension base="model:cod-entity-base">
+            <xs:sequence>
+               <xs:element name="code" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation> ISO 639-1 alfa-2
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="name" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="language" type="tns:language"/>
+   <xs:element name="currency" type="tns:currency"/>
+   <xs:element name="country" type="tns:country"/>
 </xs:schema>

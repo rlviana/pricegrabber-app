@@ -3,6 +3,7 @@ package net.rlviana.pricegrabber.domain.adapter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
@@ -13,7 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 public class DateTimeXmlAdapter extends XmlAdapter<String, Date> {
 
   public static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss";
-  private static final SimpleDateFormat formatter = new SimpleDateFormat(PATTERN);
+  private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(PATTERN);
 
   /**
    * @param value
@@ -23,7 +24,7 @@ public class DateTimeXmlAdapter extends XmlAdapter<String, Date> {
   @Override
   public Date unmarshal(final String value) {
     try {
-      return formatter.parse(value);
+      return DATE_FORMATTER.parse(value);
     } catch (ParseException e) {
       throw new IllegalArgumentException(e);
     }
@@ -36,6 +37,6 @@ public class DateTimeXmlAdapter extends XmlAdapter<String, Date> {
    */
   @Override
   public String marshal(final Date value) {
-    return formatter.format(value);
+    return DATE_FORMATTER.format(value);
   }
 }

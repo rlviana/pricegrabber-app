@@ -10,21 +10,21 @@ public interface ISearchCriteria {
   /**
    * @return the maxResults
    */
-  public int getMaxResults();
+  int getMaxResults();
 
   /**
    * @param maxResults the maxResults to set
    */
-  public void setMaxResults(int maxResults);
+  void setMaxResults(int maxResults);
 
   /**
    * @return the firstResult
    */
-  public int getFirstResult();
+  int getFirstResult();
 
   /**
    * @param firstResult the firstResult to set
    */
-  public void setFirstResult(int firstResult);
+  void setFirstResult(int firstResult);
 
 }

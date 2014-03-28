@@ -11,6 +11,7 @@
    <name>pricegrabber-domain</name>
    <description>Domain model for Pricegrabber application.</description>
    <properties>
+      <plugin.jaxb-xew.version>1.2</plugin.jaxb-xew.version>
       <jaxb-model.outputDirectory>${project.build.directory}/generated-sources/jaxb</jaxb-model.outputDirectory>
    </properties>
    <dependencies>
@@ -39,55 +40,120 @@
       </dependency>
    </dependencies>
    <build>
+      <pluginManagement>
+         <plugins>
+            <!-- add sources (classes generated inside the .metamodel folder) to the build -->
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>build-helper-maven-plugin</artifactId>
+               <executions>
+                  <execution>
+                     <id>add-generated-jaxb-model</id>
+                     <phase>generate-sources</phase>
+                     <goals>
+                        <goal>add-source</goal>
+                     </goals>
+                     <configuration>
+                        <sources>
+                           <source>${jaxb-model.outputDirectory}</source>
+                        </sources>
+                     </configuration>
+                  </execution>
+               </executions>
+            </plugin>
+         </plugins>
+      </pluginManagement>
       <plugins>
-         <!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
-            <executions> <execution> <id>xjc-generate</id> <goals> <goal>generate</goal> </goals> <phase>generate-sources</phase> 
-            <configuration> <verbose>true</verbose> <bindingDirectory>src/main/resources</bindingDirectory> <schemaDirectory>src/main/resources/xsd</schemaDirectory> 
-            <generateDirectory>${project.build.directory}/generated-sources</generateDirectory> <extension>true</extension> 
-            <args> <arg>-Xsetters</arg> <arg>-Xsetters-mode=direct</arg> </args> <plugins> <plugin> <groupId>org.jvnet.jaxb2_commons</groupId> 
-            <artifactId>jaxb2-basics</artifactId> <version>${plugin.jaxb2-basics.version}</version> </plugin> </plugins> 
-            </configuration> </execution> </executions> </plugin> -->
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jaxb2-maven-plugin</artifactId>
-            <version>${plugin.jaxb2.version}</version>
-            <executions>
-               <execution>
-                  <goals>
-                     <goal>xjc</goal>
-                  </goals>
-                  <phase>generate-sources</phase>
-                  <configuration>
-                     <schemaDirectory>src/main/resources/xsd</schemaDirectory>
-                     <target>2.1</target>
-                     <npa>true</npa>
-                     <verbose>true</verbose>
-                     <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
-                     <extension>true</extension>
-                     <bindigDirectory>src/main/resources/xsd</bindigDirectory>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <!-- add sources (classes generated inside the .metamodel folder) to the build -->
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>add-generated-jaxb-model</id>
-                  <phase>generate-sources</phase>
-                  <goals>
-                     <goal>add-source</goal>
-                  </goals>
-                  <configuration>
-                     <sources>
-                        <source>${jaxb-model.outputDirectory}</source>
-                     </sources>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
       </plugins>
    </build>
+   <profiles>
+      <profile>
+         <id>kenai</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.jvnet.jaxb2.maven2</groupId>
+                  <artifactId>maven-jaxb2-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>xjc-generate</id>
+                        <goals>
+                           <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                           <verbose>true</verbose>
+                           <bindingDirectory>src/main/resources/xjb</bindingDirectory>
+                           <schemaDirectory>src/main/resources/xsd</schemaDirectory>
+                           <generateDirectory>${jaxb-model.outputDirectory}</generateDirectory>
+                           <extension>true</extension>
+                           <args>
+                              <arg>-no-header</arg>
+                              <arg>-Xxew</arg>
+                              <arg>-Xxew:instantiate lazy</arg>
+                              <arg>-Xxew:delete</arg>
+                           </args>
+                           <plugins>
+                              <plugin>
+                                 <groupId>com.github.jaxb-xew-plugin</groupId>
+                                 <artifactId>jaxb-xew-plugin</artifactId>
+                                 <version>${plugin.jaxb-xew.version}</version>
+                              </plugin>
+                           </plugins>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>build-helper-maven-plugin</artifactId>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>codehaus</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>jaxb2-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <goals>
+                           <goal>xjc</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                           <bindigDirectory>src/main/resources/xjb</bindigDirectory>
+                           <schemaDirectory>src/main/resources/xsd</schemaDirectory>
+                           <target>2.1</target>
+                           <npa>true</npa>
+                           <verbose>true</verbose>
+                           <extension>true</extension>
+                           <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
+                           <extension>true</extension>
+                           <arguments>-b ${project.basedir}/src/main/resources/xjb/jaxb-bindings.xjb -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
+                        </configuration>
+                     </execution>
+                  </executions>
+                  <dependencies>
+                     <dependency>
+                        <groupId>com.github.jaxb-xew-plugin</groupId>
+                        <artifactId>jaxb-xew-plugin</artifactId>
+                        <version>${plugin.jaxb-xew.version}</version>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>build-helper-maven-plugin</artifactId>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
 </project>

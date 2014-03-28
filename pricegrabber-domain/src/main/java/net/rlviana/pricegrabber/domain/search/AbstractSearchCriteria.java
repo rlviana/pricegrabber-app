@@ -19,12 +19,6 @@ public abstract class AbstractSearchCriteria implements ISearchCriteria {
   private int firstResult = 0;
 
   /**
-   * Constructor
-   */
-  protected AbstractSearchCriteria() {
-  }
-
-  /**
    * @return the maxResults
    */
   @Override

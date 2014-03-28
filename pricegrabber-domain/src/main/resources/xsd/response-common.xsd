@@ -1,48 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response/common"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:response="http://pricegrabber.rlviana.net/domain/response"
-	xmlns:common="http://pricegrabber.rlviana.net/domain/entity/common"
-	version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/response/common">
-	
-	<xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/common"
-		schemaLocation="entity-common.xsd" />
-	<xs:import namespace="http://pricegrabber.rlviana.net/domain/response"
-		schemaLocation="response-base.xsd" />
-
-
-<xs:complexType name="country-find-response">
-<xs:complexContent>
-<xs:extension base="response:abstract-entity-find-response-result">
-<xs:sequence>
-<xs:element name="results" type="common:country" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="currency-find-response">
-<xs:complexContent>
-<xs:extension base="response:abstract-entity-find-response-result">
-<xs:sequence>
-<xs:element name="results" type="common:currency" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="language-find-response">
-<xs:complexContent>
-<xs:extension base="response:abstract-entity-find-response-result">
-<xs:sequence>
-<xs:element name="results" type="common:language" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:element name="currency-find-response" type="tns:currency-find-response"/>
-<xs:element name="country-find-response" type="tns:country-find-response"/>
-<xs:element name="language-find-response" type="tns:language-find-response"/>
-
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response/common" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:response="http://pricegrabber.rlviana.net/domain/response" xmlns:common="http://pricegrabber.rlviana.net/domain/entity/common"
+   version="1.0" targetNamespace="http://pricegrabber.rlviana.net/domain/response/common"
+   elementFormDefault="qualified">
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/common"
+      schemaLocation="entity-common.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response" schemaLocation="response-base.xsd"/>
+   <xs:complexType name="country-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:countries"></xs:element>
+               <!-- <xs:element name="results" type="common:country" nillable="true" minOccurs="0" maxOccurs="unbounded"/> -->
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="currency-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:currencies"></xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="language-find-response">
+      <xs:complexContent>
+         <xs:extension base="response:abstract-entity-find-response-result">
+            <xs:sequence>
+               <xs:element name="results" type="tns:languages"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="currencies">
+      <xs:sequence>
+         <xs:element ref="common:currency" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="languages">
+      <xs:sequence>
+         <xs:element ref="common:language" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="countries">
+      <xs:sequence>
+         <xs:element ref="common:country" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="countries" type="tns:countries"/>
+   <xs:element name="currencies" type="tns:currencies"/>
+   <xs:element name="languages" type="tns:languages"/>
+   <xs:element name="currency-find-response" type="tns:currency-find-response"/>
+   <xs:element name="country-find-response" type="tns:country-find-response"/>
+   <xs:element name="language-find-response" type="tns:language-find-response"/>
 </xs:schema>

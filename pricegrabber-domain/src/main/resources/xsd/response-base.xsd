@@ -1,78 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response" 
-            targetNamespace="http://pricegrabber.rlviana.net/domain/response"
-            xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-	<xs:simpleType name="message-type">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="INFO" />
-			<xs:enumeration value="WARN" />
-			<xs:enumeration value="ERROR" />
-			<xs:enumeration value="FATAL" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:complexType name="message">
-		<xs:sequence>
-			<xs:element name="messageType" type="tns:message-type" />
-			<xs:element name="message" type="xs:string" />
-			<xs:element name="messageKey" type="xs:string" />
-			<xs:element name="property" type="xs:string" />
-		</xs:sequence>
-	</xs:complexType>
-		 
-    <xs:complexType name="abstract-response" abstract="true">
-    </xs:complexType>
-
-    <xs:complexType name="abstract-response-result" abstract="true">
-    </xs:complexType>
-
-    <xs:complexType name="abstract-find-response-result" abstract="true">
-    </xs:complexType>
-    
-    <xs:complexType name="abstract-entity-response-result" abstract="true">
-        <xs:complexContent>
-            <xs:extension base="tns:abstract-response-result">
-                <xs:sequence>        
-                    <xs:element name="errors" type="xs:boolean" />
-                    <xs:element name="messages" type="tns:message" minOccurs="0" maxOccurs="unbounded" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="abstract-entity-find-response-result" abstract="true">
-        <xs:complexContent>
-            <xs:extension base="tns:abstract-find-response-result">
-                <xs:sequence>        
-                    <xs:element name="errors" type="xs:boolean" />
-                    <xs:element name="messages" type="tns:message" minOccurs="0" maxOccurs="unbounded" />
-                    <!-- primarily for paginated results -->
-                    <xs:element name="count" type="xs:long" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="response-result">
-        <xs:complexContent>
-            <xs:extension base="tns:abstract-response">
-                <xs:sequence>        
-                    <xs:element name="errors" type="xs:boolean" />
-                    <xs:element name="messages" type="tns:message" minOccurs="0" maxOccurs="unbounded" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="find-response-result">
-        <xs:complexContent>
-            <xs:extension base="tns:response-result">
-                <xs:sequence>
-                    <!-- primarily for paginated results -->
-                    <xs:element name="count" type="xs:long" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-	
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/domain/response" targetNamespace="http://pricegrabber.rlviana.net/domain/response"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+   <xs:simpleType name="message-type">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="INFO"/>
+         <xs:enumeration value="WARN"/>
+         <xs:enumeration value="ERROR"/>
+         <xs:enumeration value="FATAL"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="message">
+      <xs:sequence>
+         <xs:element name="messageType" type="tns:message-type"/>
+         <xs:element name="message" type="xs:string"/>
+         <xs:element name="messageKey" type="xs:string"/>
+         <xs:element name="property" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="messages">
+      <xs:sequence>
+         <xs:element ref="tns:message" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="abstract-response" abstract="true">
+   </xs:complexType>
+   <xs:complexType name="abstract-response-result" abstract="true">
+   </xs:complexType>
+   <xs:complexType name="abstract-find-response-result" abstract="true">
+   </xs:complexType>
+   <xs:complexType name="abstract-entity-response-result" abstract="true">
+      <xs:complexContent>
+         <xs:extension base="tns:abstract-response-result">
+            <xs:sequence>
+               <xs:element name="errors" type="xs:boolean"/>
+               <xs:element ref="tns:messages"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="abstract-entity-find-response-result" abstract="true">
+      <xs:complexContent>
+         <xs:extension base="tns:abstract-find-response-result">
+            <xs:sequence>
+               <xs:element name="errors" type="xs:boolean"/>
+               <xs:element ref="tns:messages"/>
+               <!-- primarily for paginated results -->
+               <xs:element name="count" type="xs:long"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="response-result">
+      <xs:complexContent>
+         <xs:extension base="tns:abstract-response">
+            <xs:sequence>
+               <xs:element name="errors" type="xs:boolean"/>
+               <xs:element ref="tns:messages"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="find-response-result">
+      <xs:complexContent>
+         <xs:extension base="tns:response-result">
+            <xs:sequence>
+               <!-- primarily for paginated results -->
+               <xs:element name="count" type="xs:long"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="messages" type="tns:messages"/>
+   <xs:element name="message" type="tns:message"/>
 </xs:schema>

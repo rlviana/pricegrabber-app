@@ -7,6 +7,7 @@ package net.rlviana.pricegrabber.domain.adapter;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  */
 public class BigDecimalXmlAdapter extends XmlAdapter<String, BigDecimal> {
 
-  public static final DecimalFormat df = new DecimalFormat("0.00");
+  public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.00");
 
   /**
    * @param value
@@ -26,9 +27,9 @@ public class BigDecimalXmlAdapter extends XmlAdapter<String, BigDecimal> {
   @Override
   public BigDecimal unmarshal(final String value) {
     // TODO Take into account xml vs system format
-    df.setParseBigDecimal(true);
+    DECIMAL_FORMAT.setParseBigDecimal(true);
     try {
-      return (BigDecimal) df.parse(value);
+      return (BigDecimal) DECIMAL_FORMAT.parse(value);
     } catch (ParseException e) {
       throw new IllegalArgumentException(e);
     }
@@ -43,7 +44,7 @@ public class BigDecimalXmlAdapter extends XmlAdapter<String, BigDecimal> {
   @Override
   public String marshal(final BigDecimal value) throws Exception {
     // TODO Take into account xml vs system format
-    return df.format(value);
+    return DECIMAL_FORMAT.format(value);
   }
 
 }
