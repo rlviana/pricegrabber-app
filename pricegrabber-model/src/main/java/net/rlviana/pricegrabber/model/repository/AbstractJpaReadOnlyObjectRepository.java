@@ -22,6 +22,8 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractJpaReadOnlyObjectRepository<T extends IEntity<K>, K extends Serializable> extends
     AbstractBaseJpaReadOnlyObjectRepository<T, K> {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractJpaReadOnlyObjectRepository.class);
+
   /**
    * Constructor
    * 
@@ -30,8 +32,6 @@ public abstract class AbstractJpaReadOnlyObjectRepository<T extends IEntity<K>, 
   public AbstractJpaReadOnlyObjectRepository(final Class<T> instanceClass) {
     super(instanceClass);
   }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractJpaReadOnlyObjectRepository.class);
 
   /**
    * Creates a JPA criteria query for the given searchCriteria.<br/>
