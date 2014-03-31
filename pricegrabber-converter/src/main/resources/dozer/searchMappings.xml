@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+<!-- Mappings -->
+<!-- Common -->
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.common.CountrySearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.common.CountrySearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.common.CurrencySearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.common.CurrencySearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.common.LanguageSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.common.LanguageSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<!-- Core -->
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.ItemSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.core.ItemSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.ItemTypeSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.core.ItemTypeSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.PromotionSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.core.PromotionSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.SiteSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.search.core.SiteSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.SiteItemSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.search.SiteItemSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.core.SiteItemDatumSearchCriteria</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.search.SiteItemDatumSearchCriteria
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+<!-- Result -->
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.search.SearchResult</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.response.ResponseResult
+  </class-b>
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+</mapping>
+</mappings>

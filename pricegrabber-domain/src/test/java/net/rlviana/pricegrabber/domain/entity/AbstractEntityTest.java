@@ -171,7 +171,7 @@ public abstract class AbstractEntityTest<T> {
     ItemType itemType = new ItemType();
     itemType.setCode("code");
     itemType.setName("name");
-    itemType.setId(1);
+    itemType.setId(1L);
     return itemType;
   }
 
@@ -180,7 +180,7 @@ public abstract class AbstractEntityTest<T> {
    */
   protected SiteItem getTestSiteItem() {
     SiteItem siteItem = new SiteItem();
-    siteItem.setId(1);
+    siteItem.setId(1L);
     siteItem.setUrl("url");
     siteItem.setName("name");
     siteItem.setSiteCod("siteCod");
@@ -213,7 +213,7 @@ public abstract class AbstractEntityTest<T> {
 
   protected Promotion getTestPromotion() {
     Promotion promotion = new Promotion();
-    promotion.setId(1);
+    promotion.setId(1L);
     promotion.setName("name");
     promotion.setDescription("description");
     promotion.setUrl("url");
@@ -229,7 +229,7 @@ public abstract class AbstractEntityTest<T> {
    */
   protected Item getTestItem() {
     Item item = new Item();
-    item.setId(1);
+    item.setId(1L);
     item.setName("name");
     item.setDescription("description");
     item.setItemType(getTestItemType());
@@ -244,7 +244,7 @@ public abstract class AbstractEntityTest<T> {
     site.setCountry(getTestCountry());
     site.setBaseCurrrency(getTestCurrency());
     site.setDescription("description");
-    site.setId(1);
+    site.setId(1L);
     site.getPromotions().add(getTestPromotion());
     site.getSiteItems().add(getTestSiteItem());
     return site;
@@ -266,7 +266,7 @@ public abstract class AbstractEntityTest<T> {
    */
   protected SiteItemDatum getTestSiteItemDatum() {
     SiteItemDatum siteItemDatum = new SiteItemDatum();
-    siteItemDatum.setId(1);
+    siteItemDatum.setId(1L);
     siteItemDatum.setPriceCurrency(getTestCurrency());
     siteItemDatum.setPriceDate(Calendar.getInstance().getTime());
     siteItemDatum.setPriceValue(BigDecimal.valueOf(10));

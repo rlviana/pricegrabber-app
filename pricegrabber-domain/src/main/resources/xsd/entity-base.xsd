@@ -10,7 +10,7 @@
       <xs:complexContent>
          <xs:extension base="tns:entity-base">
             <xs:sequence>
-               <xs:element name="id" type="xs:long" nillable="false"/>
+               <xs:element name="id" type="xs:long" nillable="true"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -19,7 +19,7 @@
       <xs:complexContent>
          <xs:extension base="tns:entity-base">
             <xs:sequence>
-               <xs:element name="cod" nillable="false">
+               <xs:element name="cod" nillable="true">
                   <xs:simpleType>
                      <xs:restriction base="xs:string">
                         <xs:maxLength value="4"/>

@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>net.rlviana.pricegrabber</groupId>
+      <artifactId>pricegrabber</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+   </parent>
+   <artifactId>pricegrabber-converter</artifactId>
+   <name>pricegrabber-conververter</name>
+   <description>Maven module implementing conversion among different models</description>
+   <properties>
+      <dozer.version>5.4.0</dozer.version>
+      <pricegrabber.version>0.0.1-SNAPSHOT</pricegrabber.version>
+   </properties>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+            <exclusions>
+               <exclusion>
+                  <artifactId>slf4j-api</artifactId>
+                  <groupId>org.slf4j</groupId>
+               </exclusion>
+               <exclusion>
+                  <artifactId>jcl-over-slf4j</artifactId>
+                  <groupId>org.slf4j</groupId>
+               </exclusion>
+               <exclusion>
+                  <artifactId>slf4j-log4j12</artifactId>
+                  <groupId>org.slf4j</groupId>
+               </exclusion>
+            </exclusions>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+   <dependencies>
+      <dependency>
+         <groupId>net.rlviana.pricegrabber</groupId>
+         <artifactId>pricegrabber-domain</artifactId>
+         <version>${pricegrabber.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>net.rlviana.pricegrabber</groupId>
+         <artifactId>pricegrabber-model</artifactId>
+         <version>${pricegrabber.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>net.sf.dozer</groupId>
+         <artifactId>dozer</artifactId>
+      </dependency>
+   </dependencies>
+</project>

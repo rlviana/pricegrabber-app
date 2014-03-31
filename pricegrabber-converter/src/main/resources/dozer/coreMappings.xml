@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+<!-- Mappings -->
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.Item</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.Item
+  </class-b>
+  <!-- 
+  <field>
+    <a>cod</a>
+    <b>code</b>
+  </field>
+   -->
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.ItemType</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.ItemType
+  </class-b>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.Promotion</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.Promotion
+  </class-b>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.Site</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.Site
+  </class-b>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.SiteItem</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.SiteItem
+  </class-b>
+</mapping>
+<mapping>
+  <class-a>net.rlviana.pricegrabber.model.entity.core.SiteItemDatum</class-a>
+  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
+    net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum
+  </class-b>
+</mapping>
+</mappings>
