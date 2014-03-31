@@ -1,7 +1,7 @@
 package net.rlviana.pricegrabber.model.entity.core;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -35,16 +35,16 @@ public class SiteItemDatum extends AbstractVersionedEntity<Long> {
 
   @Id
   @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "SITEITEMDATUM_SEQ_GEN")
-  @SequenceGenerator(name = "SITEITEMDATUM_SEQ_GEN", sequenceName = "PG_SITEITEMDATUM_SEQ", initialValue = 10,
-      allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "PG_SEQ_SITEITEMDATUM")
+  @TableGenerator(name = "PG_SEQ_SITEITEMDATUM", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
+      pkColumnValue = "SEQ_PG_SITEITEMDATUM", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Long id;
   @Column(name = "PRICETYPE")
   @Enumerated(EnumType.ORDINAL)
   private PriceType priceType;
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "PRICEDATE")
-  private Date priceDate;
+  private Calendar priceDate;
   @Column(name = "PRICEVALUE")
   private BigDecimal priceValue;
   @ManyToOne(optional = false)
@@ -75,14 +75,14 @@ public class SiteItemDatum extends AbstractVersionedEntity<Long> {
   /**
    * @return the priceDate
    */
-  public Date getPriceDate() {
+  public Calendar getPriceDate() {
     return priceDate;
   }
 
   /**
    * @param priceDate the priceDate to set
    */
-  public void setPriceDate(final Date priceDate) {
+  public void setPriceDate(final Calendar priceDate) {
     this.priceDate = priceDate;
   }
 

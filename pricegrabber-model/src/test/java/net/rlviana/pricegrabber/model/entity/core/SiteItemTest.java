@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import net.rlviana.pricegrabber.context.JPAPersistenceContext;
 import net.rlviana.pricegrabber.model.entity.AbstractEntityTest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author ramon
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAPersistenceContext.class})
+@ContextConfiguration(classes = { JPAPersistenceContext.class })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class SiteItemTest extends AbstractEntityTest<SiteItem, Long> {
@@ -47,9 +48,9 @@ public class SiteItemTest extends AbstractEntityTest<SiteItem, Long> {
     if (entity.getSiteItemData().size() > 0) {
       SiteItemDatum datum = entity.getSiteItemData().get(0);
       assertEquals(entity.getPriceCurrency(), datum.getPriceCurrency());
-      assertEquals(entity.getPriceDate(), datum.getPriceDate());
-      assertEquals(entity.getPriceType(), datum.getPriceType());
-      assertEquals(entity.getPriceValue(), datum.getPriceValue());
+      assertEquals(entity.getCurrentPriceDate(), datum.getPriceDate());
+      assertEquals(entity.getCurrentPriceType(), datum.getPriceType());
+      assertEquals(entity.getCurrentPriceValue(), datum.getPriceValue());
     }
   }
 
@@ -57,9 +58,9 @@ public class SiteItemTest extends AbstractEntityTest<SiteItem, Long> {
   public void testFindWithoutChildren() {
     SiteItem entity = getEntityManager().find(getTestClass(), ENTITY_PK_FIND_WITHOUT_CHILDREN);
     assertNull(entity.getPriceCurrency());
-    assertNull(entity.getPriceDate());
-    assertNull(entity.getPriceType());
-    assertNull(entity.getPriceValue());
+    assertNull(entity.getCurrentPriceDate());
+    assertNull(entity.getCurrentPriceType());
+    assertNull(entity.getCurrentPriceValue());
   }
 
   @Test

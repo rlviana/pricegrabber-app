@@ -7,7 +7,7 @@ package net.rlviana.pricegrabber.model.repository.core;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 import net.rlviana.pricegrabber.context.JPAPersistenceContext;
 import net.rlviana.pricegrabber.model.entity.core.PriceType;
@@ -56,7 +56,7 @@ public class SiteItemDatumIT extends AbstractRepositoryIT<SiteItemDatum, Long> {
     entity.setAvailability("availability");
     entity.setSiteItem(getSiteItem());
     entity.setPriceCurrency(getTestCurrency());
-    entity.setPriceDate(new Date());
+    entity.setPriceDate(Calendar.getInstance());
     entity.setPriceType(PriceType.REGULAR_PRICE);
     entity.setPriceValue(BigDecimal.valueOf(10L));
     return entity;

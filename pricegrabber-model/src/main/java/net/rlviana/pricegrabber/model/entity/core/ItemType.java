@@ -16,8 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 import net.rlviana.pricegrabber.model.entity.AbstractVersionedEntity;
 
@@ -32,8 +32,9 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
   private static final long serialVersionUID = -7478979310379296029L;
   @Id
   @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "ITEMTYPE_SEQ_GEN")
-  @SequenceGenerator(name = "ITEMTYPE_SEQ_GEN", sequenceName = "PG_ITEMTYPE_SEQ", initialValue = 10, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "PG_SEQ_ITEMTYPE")
+  @TableGenerator(name = "PG_SEQ_ITEMTYPE", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
+      pkColumnValue = "SEQ_PG_ITEMTYPE", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Integer id;
   @Column(name = "NAME", nullable = false, length = SHORTNAME_LENGHT)
   private String name;

@@ -1,6 +1,7 @@
 package net.rlviana.pricegrabber.model.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.MappedSuperclass;
@@ -16,7 +17,6 @@ import javax.persistence.TemporalType;
  * @author ramon
  */
 @MappedSuperclass
-// @EntityListener
 @SuppressWarnings("serial")
 public abstract class AbstractAuditableEntity<T extends Serializable> extends AbstractVersionedEntity<T> {
 
@@ -24,7 +24,7 @@ public abstract class AbstractAuditableEntity<T extends Serializable> extends Ab
   private Date lastUpdated;
   private String lastUpdateUser;
   @Temporal(TemporalType.TIMESTAMP)
-  private Date created;
+  private Calendar created;
   private String createUser;
 
   /**
@@ -58,14 +58,14 @@ public abstract class AbstractAuditableEntity<T extends Serializable> extends Ab
   /**
    * @return the created
    */
-  public final Date getCreated() {
+  public final Calendar getCreated() {
     return created;
   }
 
   /**
    * @param created the created to set
    */
-  public final void setCreated(final Date created) {
+  public final void setCreated(final Calendar created) {
     this.created = created;
   }
 

@@ -1,7 +1,7 @@
 package net.rlviana.pricegrabber.model.entity.core;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,8 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,9 +34,9 @@ public class Promotion extends AbstractVersionedEntity<Long> {
 
   @Id
   @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "PROMOTION_SEQ_GEN")
-  @SequenceGenerator(name = "PROMOTION_SEQ_GEN", sequenceName = "PG_PROMOTION_SEQ", initialValue = 10,
-      allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "PG_SEQ_PROMOTION")
+  @TableGenerator(name = "PG_SEQ_PROMOTION", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
+      pkColumnValue = "SEQ_PG_PROMOTION", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Long id;
   @Column(name = "NAME", nullable = false, length = LONGNAME_LENGHT)
   private String name;
@@ -51,10 +51,10 @@ public class Promotion extends AbstractVersionedEntity<Long> {
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "BEGINDATE")
-  private Date beginDate;
+  private Calendar beginDate;
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "ENDDATE")
-  private Date endDate;
+  private Calendar endDate;
   @Column(name = "ACTIVE")
   private Boolean active;
 
@@ -145,28 +145,28 @@ public class Promotion extends AbstractVersionedEntity<Long> {
   /**
    * @return the beginDate
    */
-  public Date getBeginDate() {
+  public Calendar getBeginDate() {
     return beginDate;
   }
 
   /**
    * @param beginDate the beginDate to set
    */
-  public void setBeginDate(final Date beginDate) {
+  public void setBeginDate(final Calendar beginDate) {
     this.beginDate = beginDate;
   }
 
   /**
    * @return the endDate
    */
-  public Date getEndDate() {
+  public Calendar getEndDate() {
     return endDate;
   }
 
   /**
    * @param endDate the endDate to set
    */
-  public void setEndDate(final Date endDate) {
+  public void setEndDate(final Calendar endDate) {
     this.endDate = endDate;
   }
 

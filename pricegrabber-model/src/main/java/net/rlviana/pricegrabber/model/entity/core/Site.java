@@ -16,8 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 import net.rlviana.pricegrabber.model.entity.AbstractAuditableEntity;
 import net.rlviana.pricegrabber.model.entity.common.Country;
@@ -38,8 +38,9 @@ public class Site extends AbstractAuditableEntity<Long> {
 
   @Id
   @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "SITE_SEQ_GEN")
-  @SequenceGenerator(name = "SITE_SEQ_GEN", sequenceName = "PG_SITE_SEQ", initialValue = 10, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "PG_SEQ_SITE")
+  @TableGenerator(name = "PG_SEQ_SITE", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
+      pkColumnValue = "SEQ_PG_SITE", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Long id;
   @Column(name = "NAME", nullable = false, length = NAME_LENGHT)
   private String name;

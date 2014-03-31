@@ -2,7 +2,7 @@ package net.rlviana.pricegrabber.model.entity.core;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,8 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
 import net.rlviana.pricegrabber.model.entity.AbstractVersionedEntity;
@@ -39,8 +39,9 @@ public class SiteItem extends AbstractVersionedEntity<Long> {
 
   @Id
   @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "SITEITEM_SEQ_GEN")
-  @SequenceGenerator(name = "SITEITEM_SEQ_GEN", sequenceName = "PG_SITEITEM_SEQ", initialValue = 10, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "PG_SEQ_SITEITEM")
+  @TableGenerator(name = "PG_SEQ_SITEITEM", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
+      pkColumnValue = "SEQ_PG_SITEITEM", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Long id;
   @Column(name = "NAME", nullable = false, length = NAME_LENGHT)
   private String name;
@@ -228,7 +229,7 @@ public class SiteItem extends AbstractVersionedEntity<Long> {
    * @return the pricePrice
    */
   @Transient
-  public PriceType getPriceType() {
+  public PriceType getCurrentPriceType() {
     if (getSiteItemData().size() > 0) {
       return getSiteItemData().get(0).getPriceType();
     }
@@ -241,7 +242,7 @@ public class SiteItem extends AbstractVersionedEntity<Long> {
    * @return the priceDate
    */
   @Transient
-  public Date getPriceDate() {
+  public Calendar getCurrentPriceDate() {
     if (getSiteItemData().size() > 0) {
       return getSiteItemData().get(0).getPriceDate();
     }
@@ -255,7 +256,7 @@ public class SiteItem extends AbstractVersionedEntity<Long> {
    * @return the priceValue
    */
   @Transient
-  public BigDecimal getPriceValue() {
+  public BigDecimal getCurrentPriceValue() {
     if (getSiteItemData().size() > 0) {
       return getSiteItemData().get(0).getPriceValue();
     }

@@ -1,7 +1,7 @@
 package net.rlviana.pricegrabber.model.search.entity.core;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -30,9 +30,9 @@ public class PromotionSearchCriteria extends AbstractSearchCriteria<Promotion, L
   private String siteName = null;
   private Boolean activePromotions;
   private Boolean activeOrNull;
-  private Date promotionDate;
-  private Date promotionEndDate;
-  private Date promotionBeginDate;
+  private Calendar promotionDate;
+  private Calendar promotionEndDate;
+  private Calendar promotionBeginDate;
 
   @Override
   public Class<Promotion> getEntityClass() {
@@ -148,14 +148,14 @@ public class PromotionSearchCriteria extends AbstractSearchCriteria<Promotion, L
   /**
    * @return the promotionDate
    */
-  public Date getPromotionDate() {
+  public Calendar getPromotionDate() {
     return promotionDate;
   }
 
   /**
    * @param promotionDate the promotionDate to set
    */
-  public void setPromotionDate(final Date promotionDate) {
+  public void setPromotionDate(final Calendar promotionDate) {
     this.promotionDate = promotionDate;
   }
 
@@ -204,28 +204,28 @@ public class PromotionSearchCriteria extends AbstractSearchCriteria<Promotion, L
   /**
    * @return the promotionEndDate
    */
-  public Date getPromotionEndDate() {
+  public Calendar getPromotionEndDate() {
     return promotionEndDate;
   }
 
   /**
    * @param promotionEndDate the promotionEndDate to set
    */
-  public void setPromotionEndDate(final Date promotionEndDate) {
+  public void setPromotionEndDate(final Calendar promotionEndDate) {
     this.promotionEndDate = promotionEndDate;
   }
 
   /**
    * @return the promotionBeginDate
    */
-  public Date getPromotionBeginDate() {
+  public Calendar getPromotionBeginDate() {
     return promotionBeginDate;
   }
 
   /**
    * @param promotionBeginDate the promotionBeginDate to set
    */
-  public void setPromotionBeginDate(final Date promotionBeginDate) {
+  public void setPromotionBeginDate(final Calendar promotionBeginDate) {
     this.promotionBeginDate = promotionBeginDate;
   }
 

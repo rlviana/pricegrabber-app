@@ -59,9 +59,9 @@ public class SiteItemIT extends AbstractRepositoryIT<SiteItem, Long> {
     if (entity.getSiteItemData().size() > 0) {
       SiteItemDatum datum = entity.getSiteItemData().get(0);
       assertEquals(entity.getPriceCurrency(), datum.getPriceCurrency());
-      assertEquals(entity.getPriceDate(), datum.getPriceDate());
-      assertEquals(entity.getPriceType(), datum.getPriceType());
-      assertEquals(entity.getPriceValue(), datum.getPriceValue());
+      assertEquals(entity.getCurrentPriceDate(), datum.getPriceDate());
+      assertEquals(entity.getCurrentPriceType(), datum.getPriceType());
+      assertEquals(entity.getCurrentPriceValue(), datum.getPriceValue());
     }
   }
 
@@ -69,9 +69,9 @@ public class SiteItemIT extends AbstractRepositoryIT<SiteItem, Long> {
   public void testFindWithoutChildren() {
     SiteItem entity = getRepository().findById(ENTITY_PK_FIND_WITHOUT_CHILDREN);
     assertNull(entity.getPriceCurrency());
-    assertNull(entity.getPriceDate());
-    assertNull(entity.getPriceType());
-    assertNull(entity.getPriceValue());
+    assertNull(entity.getCurrentPriceDate());
+    assertNull(entity.getCurrentPriceType());
+    assertNull(entity.getCurrentPriceValue());
   }
 
   @Test

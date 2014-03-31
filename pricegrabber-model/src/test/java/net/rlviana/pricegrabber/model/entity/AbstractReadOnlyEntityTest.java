@@ -90,6 +90,7 @@ public abstract class AbstractReadOnlyEntityTest<T extends IEntity<K>, K extends
    */
   @Before
   public void setUp() throws Exception {
+    LOGGER.debug("Start test");
     assertNotNull(entityManager);
     IDatabaseConnection conn = getConnection();
     DatabaseOperation.CLEAN_INSERT.execute(conn, getDataSet()); //
@@ -100,6 +101,7 @@ public abstract class AbstractReadOnlyEntityTest<T extends IEntity<K>, K extends
    */
   @After
   public void tearDown() throws Exception {
+    LOGGER.debug("End test");
   }
 
   @Test

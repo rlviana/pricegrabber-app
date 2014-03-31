@@ -1,14 +1,13 @@
-/*
- * Created on 24/02/2014
- *
- */
 package net.rlviana.pricegrabber.model.entity.core;
 
 import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
+
 import net.rlviana.pricegrabber.context.JPAPersistenceContext;
 import net.rlviana.pricegrabber.model.entity.AbstractEntityTest;
+
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author ramon
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAPersistenceContext.class})
+@ContextConfiguration(classes = { JPAPersistenceContext.class })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class SiteItemDatumTest extends AbstractEntityTest<SiteItemDatum, Long> {
@@ -45,7 +44,7 @@ public class SiteItemDatumTest extends AbstractEntityTest<SiteItemDatum, Long> {
     entity.setAvailability("availability");
     entity.setSiteItem(getSiteItem());
     entity.setPriceCurrency(getTestCurrency());
-    entity.setPriceDate(new Date());
+    entity.setPriceDate(Calendar.getInstance());
     entity.setPriceType(PriceType.REGULAR_PRICE);
     entity.setPriceValue(BigDecimal.valueOf(10L));
     return entity;
