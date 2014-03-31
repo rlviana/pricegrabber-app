@@ -2,14 +2,28 @@
  * Created on 03/03/2014
  *
  */
-package net.rlviana.pricegrabber.domain.entity.common;
+package net.rlviana.pricegrabber.domain.entity;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.util.Calendar;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import net.rlviana.pricegrabber.domain.entity.common.Country;
+import net.rlviana.pricegrabber.domain.entity.common.Currency;
+import net.rlviana.pricegrabber.domain.entity.core.Item;
+import net.rlviana.pricegrabber.domain.entity.core.ItemType;
+import net.rlviana.pricegrabber.domain.entity.core.Promotion;
+import net.rlviana.pricegrabber.domain.entity.core.Site;
+import net.rlviana.pricegrabber.domain.entity.core.SiteItem;
+import net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum;
+import net.rlviana.pricegrabber.domain.entity.core.SiteItemPrice;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +32,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -73,7 +88,9 @@ public abstract class AbstractEntityTest<T> {
   public void testMarshallXml() throws JAXBException {
     StringWriter stringWriter = new StringWriter();
     getMarshaller().marshal(getEntityOK(), stringWriter);
-    LOGGER.debug("XML:{}", stringWriter.toString());
+    String objectResult = stringWriter.toString();
+    LOGGER.debug("XML:{}", objectResult);
+
   }
 
   @Test
@@ -85,7 +102,8 @@ public abstract class AbstractEntityTest<T> {
   public void testMarshallJson() throws JsonGenerationException, JsonMappingException, IOException {
     StringWriter stringWriter = new StringWriter();
     mapper.writeValue(stringWriter, getEntityOK());
-    LOGGER.debug("JSON:{}", stringWriter.toString());
+    String objectResult = stringWriter.toString();
+    LOGGER.debug("JSON:{}", objectResult);
   }
 
   @Test
@@ -144,6 +162,117 @@ public abstract class AbstractEntityTest<T> {
     StringWriter stringWriter = new StringWriter();
     getMarshaller().marshal(entity, stringWriter);
     return stringWriter.toString();
+  }
+
+  /**
+   * @return
+   */
+  protected ItemType getTestItemType() {
+    ItemType itemType = new ItemType();
+    itemType.setCode("code");
+    itemType.setName("name");
+    itemType.setId(1);
+    return itemType;
+  }
+
+  /**
+   * @return
+   */
+  protected SiteItem getTestSiteItem() {
+    SiteItem siteItem = new SiteItem();
+    siteItem.setId(1);
+    siteItem.setUrl("url");
+    siteItem.setName("name");
+    siteItem.setSiteCod("siteCod");
+    siteItem.setItemType(getTestItemType());
+    siteItem.setCurrentPrice(getTestPrice());
+    return siteItem;
+  }
+
+  /**
+   * @return
+   */
+  private SiteItemPrice getTestPrice() {
+    SiteItemPrice price = new SiteItemPrice();
+    price.setPriceCurrency(getTestCurrency());
+    price.setPriceDate(Calendar.getInstance().getTime());
+    price.setPriceValue(BigDecimal.valueOf(10));
+    return price;
+  }
+
+  /**
+   * @return
+   */
+  protected Currency getTestCurrency() {
+    Currency currency = new Currency();
+    currency.setCod("cod");
+    currency.setCode("code");
+    currency.setName("name");
+    return currency;
+  }
+
+  protected Promotion getTestPromotion() {
+    Promotion promotion = new Promotion();
+    promotion.setId(1);
+    promotion.setName("name");
+    promotion.setDescription("description");
+    promotion.setUrl("url");
+    promotion.setBeginDate(Calendar.getInstance().getTime());
+    promotion.setEndDate(Calendar.getInstance().getTime());
+    promotion.setActive(Boolean.FALSE);
+    promotion.getSiteItems().add(getTestSiteItem());
+    return promotion;
+  }
+
+  /**
+   * @return
+   */
+  protected Item getTestItem() {
+    Item item = new Item();
+    item.setId(1);
+    item.setName("name");
+    item.setDescription("description");
+    item.setItemType(getTestItemType());
+    return item;
+  }
+
+  /**
+   * @return
+   */
+  protected Site getTestSite() {
+    Site site = new Site();
+    site.setCountry(getTestCountry());
+    site.setBaseCurrrency(getTestCurrency());
+    site.setDescription("description");
+    site.setId(1);
+    site.getPromotions().add(getTestPromotion());
+    site.getSiteItems().add(getTestSiteItem());
+    return site;
+  }
+
+  /**
+   * @return
+   */
+  protected Country getTestCountry() {
+    Country country = new Country();
+    country.setCod("cod");
+    country.setCode("code");
+    country.setName("name");
+    return country;
+  }
+
+  /**
+   * @return
+   */
+  protected SiteItemDatum getTestSiteItemDatum() {
+    SiteItemDatum siteItemDatum = new SiteItemDatum();
+    siteItemDatum.setId(1);
+    siteItemDatum.setPriceCurrency(getTestCurrency());
+    siteItemDatum.setPriceDate(Calendar.getInstance().getTime());
+    siteItemDatum.setPriceValue(BigDecimal.valueOf(10));
+    siteItemDatum.setSiteItem(getTestSiteItem());
+    return siteItemDatum;
+
   }
 
   protected abstract Class<T> getDomainEntityType();

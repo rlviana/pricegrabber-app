@@ -11,3 +11,5 @@ reports/
 #Generated folders
 target/
 bin/
+/target
+/target

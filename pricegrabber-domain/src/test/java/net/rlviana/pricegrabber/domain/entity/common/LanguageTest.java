@@ -4,14 +4,16 @@
  */
 package net.rlviana.pricegrabber.domain.entity.common;
 
+import net.rlviana.pricegrabber.domain.entity.AbstractEntityTest;
+
 /**
  * @author ramon
  */
-public class LanguageEntityTest extends AbstractEntityTest<Language> {
+public class LanguageTest extends AbstractEntityTest<Language> {
 
   /**
    * @return
-   * @see net.rlviana.pricegrabber.domain.entity.common.AbstractEntityTest#getEntityOK()
+   * @see net.rlviana.pricegrabber.domain.entity.AbstractEntityTest#getEntityOK()
    */
   @Override
   protected Language getEntityOK() {
@@ -24,7 +26,7 @@ public class LanguageEntityTest extends AbstractEntityTest<Language> {
 
   /**
    * @return
-   * @see net.rlviana.pricegrabber.domain.entity.common.AbstractEntityTest#getEntityKO()
+   * @see net.rlviana.pricegrabber.domain.entity.AbstractEntityTest#getEntityKO()
    */
   @Override
   protected Language getEntityKO() {
@@ -34,7 +36,7 @@ public class LanguageEntityTest extends AbstractEntityTest<Language> {
 
   /**
    * @return
-   * @see net.rlviana.pricegrabber.domain.entity.common.AbstractEntityTest#getDomainEntityType()
+   * @see net.rlviana.pricegrabber.domain.entity.AbstractEntityTest#getDomainEntityType()
    */
   @Override
   protected Class<Language> getDomainEntityType() {
