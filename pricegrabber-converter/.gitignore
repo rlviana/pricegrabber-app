@@ -1,15 +1,27 @@
-# Eclipse project files
+# IDE support files
 .classpath
 .project
-.settings/
-.metadata/
- 
-# PMD files
+.metadata
+.settings
+.wtpmodules
 .pmd
+.checkstyle
 reports/
 
 #Generated folders
 target/
 bin/
-/target
-/target
+
+# General folders
+local
+nbproject
+
+# logs
+*.log
+
+# mac files
+.DS_Store
+
+
+ 
+
