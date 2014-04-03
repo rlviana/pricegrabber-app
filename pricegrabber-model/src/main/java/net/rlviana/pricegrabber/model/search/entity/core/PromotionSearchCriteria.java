@@ -39,33 +39,18 @@ public class PromotionSearchCriteria extends AbstractSearchCriteria<Promotion, L
     return Promotion.class;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getHaving(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getHaving(final CriteriaBuilder builder, final Root<Promotion> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getGrouping(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Expression<Promotion>> getGrouping(final CriteriaBuilder builder, final Root<Promotion> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getRestrictions(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getRestrictions(final CriteriaBuilder builder, final Root<Promotion> root) {
     final List<Predicate> predicates = new ArrayList<Predicate>();
@@ -106,10 +91,6 @@ public class PromotionSearchCriteria extends AbstractSearchCriteria<Promotion, L
     return predicates;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getOrdering(javax.persistence.criteria.CriteriaBuilder)
-   */
   @Override
   protected List<Order> getOrdering(final CriteriaBuilder builder, final Root<Promotion> root) {
     List<Order> orderBy = new ArrayList<Order>();

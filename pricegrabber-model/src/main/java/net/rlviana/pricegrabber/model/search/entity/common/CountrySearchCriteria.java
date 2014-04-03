@@ -62,6 +62,25 @@ public class CountrySearchCriteria extends AbstractSearchCriteria<Country, Strin
 
   }
 
+  @Override
+  protected List<Predicate> getHaving(final CriteriaBuilder builder, final Root<Country> root) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  protected List<Order> getOrdering(final CriteriaBuilder builder, final Root<Country> root) {
+    List<Order> orderBy = new ArrayList<Order>();
+    orderBy.add(builder.desc(root.get(Country_.id)));
+    return orderBy;
+  }
+
+  @Override
+  protected List<Expression<Country>> getGrouping(final CriteriaBuilder builder, final Root<Country> root) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
   /**
    * @return the id
    */
@@ -144,39 +163,6 @@ public class CountrySearchCriteria extends AbstractSearchCriteria<Country, Strin
    */
   public void setNameLike(final String nameLike) {
     this.nameLike = nameLike;
-  }
-
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getHaving(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
-  @Override
-  protected List<Predicate> getHaving(final CriteriaBuilder builder, final Root<Country> root) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getOrdering(javax.persistence.criteria.CriteriaBuilder)
-   */
-  @Override
-  protected List<Order> getOrdering(final CriteriaBuilder builder, final Root<Country> root) {
-    List<Order> orderBy = new ArrayList<Order>();
-    orderBy.add(builder.desc(root.get(Country_.id)));
-    return orderBy;
-  }
-
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getGroupBy(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
-  @Override
-  protected List<Expression<Country>> getGrouping(final CriteriaBuilder builder, final Root<Country> root) {
-    // TODO Auto-generated method stub
-    return null;
   }
 
 }

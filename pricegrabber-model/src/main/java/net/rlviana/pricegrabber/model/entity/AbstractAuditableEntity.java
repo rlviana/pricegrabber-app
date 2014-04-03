@@ -2,7 +2,6 @@ package net.rlviana.pricegrabber.model.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -21,7 +20,7 @@ import javax.persistence.TemporalType;
 public abstract class AbstractAuditableEntity<T extends Serializable> extends AbstractVersionedEntity<T> {
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Date lastUpdated;
+  private Calendar lastUpdated;
   private String lastUpdateUser;
   @Temporal(TemporalType.TIMESTAMP)
   private Calendar created;
@@ -30,14 +29,14 @@ public abstract class AbstractAuditableEntity<T extends Serializable> extends Ab
   /**
    * @return the lastUpdated
    */
-  public final Date getLastUpdated() {
+  public final Calendar getLastUpdated() {
     return lastUpdated;
   }
 
   /**
    * @param lastUpdated the lastUpdated to set
    */
-  public final void setLastUpdated(final Date lastUpdated) {
+  public final void setLastUpdated(final Calendar lastUpdated) {
     this.lastUpdated = lastUpdated;
   }
 

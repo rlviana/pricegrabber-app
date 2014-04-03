@@ -48,32 +48,17 @@ public abstract class AbstractBaseJpaReadOnlyObjectRepository<T extends IEntity<
     return getEntityManager().find(getInstanceClass(), instanceId);
   }
 
-  /**
-   * 
-   * 
-   * @see net.rlviana.pricegrabber.model.repository.ReadOnlyObjectRepository#findByCriteria(net.rlviana.pricegrabber.model.search.AbstractSearchCriteria)
-   */
   @Override
   @SuppressWarnings("unchecked")
   public List<T> findByCriteria(final AbstractSearchCriteria<T, K> criteria) {
     return getCriteriaQuery(criteria).getResultList();
   }
 
-  /**
-   * 
-   * 
-   * @see net.rlviana.pricegrabber.model.repository.ReadOnlyObjectRepository#countAll()
-   */
   @Override
   public Long countAll() {
     return countByCriteria(getCriteriaAll());
   }
 
-  /**
-   * 
-   * 
-   * @see net.rlviana.pricegrabber.model.repository.ReadOnlyObjectRepository#countByCriteria(net.rlviana.pricegrabber.model.search.AbstractSearchCriteria)
-   */
   @Override
   public Long countByCriteria(final AbstractSearchCriteria<T, K> criteria) {
     return (Long) getCountCriteriaQuery(criteria).getSingleResult();

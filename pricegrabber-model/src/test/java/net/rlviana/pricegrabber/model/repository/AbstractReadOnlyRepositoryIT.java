@@ -16,15 +16,21 @@ import javax.sql.DataSource;
 import net.rlviana.pricegrabber.context.JPAPersistenceContext;
 import net.rlviana.pricegrabber.context.RepositoryContext;
 import net.rlviana.pricegrabber.model.entity.IEntity;
+import net.rlviana.pricegrabber.model.repository.common.CountryRepository;
+import net.rlviana.pricegrabber.model.repository.common.CurrencyRepository;
+import net.rlviana.pricegrabber.model.repository.common.LanguageRepository;
+import net.rlviana.pricegrabber.model.repository.core.ItemRepository;
+import net.rlviana.pricegrabber.model.repository.core.ItemTypeRepository;
+import net.rlviana.pricegrabber.model.repository.core.PromotionRepository;
+import net.rlviana.pricegrabber.model.repository.core.SiteItemDatumRepository;
+import net.rlviana.pricegrabber.model.repository.core.SiteItemRepository;
+import net.rlviana.pricegrabber.model.repository.core.SiteRepository;
 import net.rlviana.pricegrabber.model.search.AbstractSearchCriteria;
 
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -34,10 +40,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
+
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 /**
  * @author ramon
@@ -47,11 +52,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { JPAPersistenceContext.class, RepositoryContext.class })
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-    DirtiesContextTestExecutionListener.class,
-    TransactionalTestExecutionListener.class })
-@Transactional
+@TestExecutionListeners({
+    DependencyInjectionTestExecutionListener.class,
+    DbUnitTestExecutionListener.class })
+@DatabaseSetup("classpath:/dbunit/test-Dataset.xml")
 public abstract class AbstractReadOnlyRepositoryIT<T extends IEntity<K>, K extends Serializable> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractReadOnlyRepositoryIT.class);
@@ -62,16 +66,36 @@ public abstract class AbstractReadOnlyRepositoryIT<T extends IEntity<K>, K exten
   @Autowired
   private DataSource dataSource;
 
-  private IDatabaseConnection getConnection() throws Exception {
-    return new DatabaseConnection(entityManager.unwrap(java.sql.Connection.class));
+  private CurrencyRepository currencyRepository;
+  private LanguageRepository languageRepository;
+  private CountryRepository countryRepository;
+  private ItemRepository itemRepository;
+  private ItemTypeRepository itemTypeRepository;
+  private PromotionRepository promotionRepository;
+  private SiteItemDatumRepository siteItemDatumRepository;
+  private SiteItemRepository siteItemRepository;
+  private SiteRepository siteRepository;
+
+  // private IDatabaseConnection getConnection() throws Exception {
+  // return new DatabaseConnection(entityManager.unwrap(java.sql.Connection.class));
+  // }
+  //
+  // private IDataSet getDataSet() throws Exception {
+  // FlatXmlDataSetBuilder flatXmlDataSetBuilder = new FlatXmlDataSetBuilder();
+  // flatXmlDataSetBuilder.setColumnSensing(true);
+  // return flatXmlDataSetBuilder.build(
+  // Thread.currentThread().getContextClassLoader().getResourceAsStream(""));
+  //
+  // }
+
+  @BeforeClass
+  public static void setUpTest() {
+    LOGGER.trace("Starting tests");
   }
 
-  private IDataSet getDataSet() throws Exception {
-    FlatXmlDataSetBuilder flatXmlDataSetBuilder = new FlatXmlDataSetBuilder();
-    flatXmlDataSetBuilder.setColumnSensing(true);
-    return flatXmlDataSetBuilder.build(
-        Thread.currentThread().getContextClassLoader().getResourceAsStream("dbunit/test-Dataset.xml"));
-
+  @AfterClass
+  public static void tearDownTest() {
+    LOGGER.trace("Finished tests");
   }
 
   /**
@@ -79,9 +103,7 @@ public abstract class AbstractReadOnlyRepositoryIT<T extends IEntity<K>, K exten
    */
   @Before
   public void setUp() throws Exception {
-    assertNotNull(entityManager);
-    IDatabaseConnection conn = getConnection();
-    DatabaseOperation.CLEAN_INSERT.execute(conn, getDataSet()); //
+
   }
 
   /**
@@ -89,6 +111,142 @@ public abstract class AbstractReadOnlyRepositoryIT<T extends IEntity<K>, K exten
    */
   @After
   public void tearDown() throws Exception {
+  }
+
+  /**
+   * @return
+   */
+  protected CountryRepository getCountryRepository() {
+    return countryRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected CurrencyRepository getCurrencyRepository() {
+
+    return currencyRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected LanguageRepository getLanguageRepository() {
+    return languageRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected ItemRepository getItemRepository() {
+    return itemRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected ItemTypeRepository getItemTypeRepository() {
+    return itemTypeRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected PromotionRepository getPromotionRepository() {
+    return promotionRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected SiteItemDatumRepository getSiteItemDatumRepository() {
+    return siteItemDatumRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected SiteItemRepository getSiteItemRepository() {
+    return siteItemRepository;
+  }
+
+  /**
+   * @return
+   */
+  protected SiteRepository getSiteRepository() {
+    return siteRepository;
+  }
+
+  /**
+   * @param currencyRepository the currencyRepository to set
+   */
+  @Autowired
+  public void setCurrencyRepository(CurrencyRepository currencyRepository) {
+    this.currencyRepository = currencyRepository;
+  }
+
+  /**
+   * @param languageRepository the languageRepository to set
+   */
+  @Autowired
+  public void setLanguageRepository(LanguageRepository languageRepository) {
+    this.languageRepository = languageRepository;
+  }
+
+  /**
+   * @param countryRepository the countryRepository to set
+   */
+  @Autowired
+  public void setCountryRepository(CountryRepository countryRepository) {
+    this.countryRepository = countryRepository;
+  }
+
+  /**
+   * @param itemRepository the itemRepository to set
+   */
+  @Autowired
+  public void setItemRepository(ItemRepository itemRepository) {
+    this.itemRepository = itemRepository;
+  }
+
+  /**
+   * @param itemTypeRepository the itemTypeRepository to set
+   */
+  @Autowired
+  public void setItemTypeRepository(ItemTypeRepository itemTypeRepository) {
+    this.itemTypeRepository = itemTypeRepository;
+  }
+
+  /**
+   * @param promotionRepository the promotionRepository to set
+   */
+  @Autowired
+  public void setPromotionRepository(PromotionRepository promotionRepository) {
+    this.promotionRepository = promotionRepository;
+  }
+
+  /**
+   * @param siteItemDatumRepository the siteItemDatumRepository to set
+   */
+  @Autowired
+  public void setSiteItemDatumRepository(SiteItemDatumRepository siteItemDatumRepository) {
+    this.siteItemDatumRepository = siteItemDatumRepository;
+  }
+
+  /**
+   * @param siteItemRepository the siteItemRepository to set
+   */
+  @Autowired
+  public void setSiteItemRepository(SiteItemRepository siteItemRepository) {
+    this.siteItemRepository = siteItemRepository;
+  }
+
+  /**
+   * @param siteRepository the siteRepository to set
+   */
+  @Autowired
+  public void setSiteRepository(SiteRepository siteRepository) {
+    this.siteRepository = siteRepository;
   }
 
   /**

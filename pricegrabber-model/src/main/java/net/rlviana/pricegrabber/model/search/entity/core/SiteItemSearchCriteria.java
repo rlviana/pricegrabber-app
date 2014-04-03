@@ -45,33 +45,18 @@ public class SiteItemSearchCriteria extends AbstractSearchCriteria<SiteItem, Lon
     return SiteItem.class;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getGrouping(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Expression<SiteItem>> getGrouping(final CriteriaBuilder builder, final Root<SiteItem> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getHaving(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getHaving(final CriteriaBuilder builder, final Root<SiteItem> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getRestrictions(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getRestrictions(final CriteriaBuilder builder, final Root<SiteItem> root) {
     final List<Predicate> predicates = new ArrayList<Predicate>();
@@ -112,10 +97,6 @@ public class SiteItemSearchCriteria extends AbstractSearchCriteria<SiteItem, Lon
     return predicates;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getOrdering(javax.persistence.criteria.CriteriaBuilder)
-   */
   @Override
   protected List<Order> getOrdering(final CriteriaBuilder builder, final Root<SiteItem> root) {
     List<Order> orderBy = new ArrayList<Order>();

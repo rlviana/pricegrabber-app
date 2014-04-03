@@ -133,56 +133,6 @@
    </dependencies>
    <build>
       <plugins>
-         <!-- Canonical metamodel generation -->
-         <plugin>
-            <groupId>org.bsc.maven</groupId>
-            <artifactId>maven-processor-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>generate-metamodel</id>
-                  <goals>
-                     <goal>process</goal>
-                  </goals>
-                  <phase>generate-sources</phase>
-                  <configuration>
-                     <processors>
-                        <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
-                     </processors>
-                     <failOnError>true</failOnError>
-                     <compilerArguments>
-                        -Aeclipselink.persistencexml=${project.basedir}/src/main/resources/META-INF/persistence.xml 
-                     </compilerArguments>
-                     <outputDirectory>${jpa-metamodel.outputDirectory}</outputDirectory>
-                  </configuration>
-               </execution>
-            </executions>
-            <dependencies>
-               <dependency>
-                  <groupId>org.eclipse.persistence</groupId>
-                  <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-                  <version>${eclipselink.version}</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-         <!-- add sources (classes generated inside the .metamodel folder) to the build -->
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>add-generated-metamodel</id>
-                  <phase>generate-sources</phase>
-                  <goals>
-                     <goal>add-source</goal>
-                  </goals>
-                  <configuration>
-                     <sources>
-                        <source>${jpa-metamodel.outputDirectory}</source>
-                     </sources>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
       </plugins>
    </build>
    <profiles>
@@ -193,6 +143,41 @@
          <activation>
             <activeByDefault>true</activeByDefault>
          </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <!-- Canonical metamodel generation -->
+                  <!-- Add Generated Metamodel to source path-->                  
+                  <groupId>org.bsc.maven</groupId>
+                  <artifactId>maven-processor-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>process</id>
+                        <goals>
+                           <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                           <processors>
+                              <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
+                           </processors>
+                           <optionMap>
+                              <eclipselink.persistencexml>${basedir}/src/main/resources/META-INF/persistence.xml</eclipselink.persistencexml>
+                           </optionMap>
+                           <outputDirectory>${jpa-metamodel.outputDirectory}</outputDirectory>
+                        </configuration>
+                     </execution>
+                  </executions>
+                  <dependencies>
+                     <dependency>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                        <version>${eclipselink.version}</version>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+            </plugins>
+         </build>
          <dependencies>
             <dependency>
                <groupId>org.eclipse.persistence</groupId>
@@ -249,6 +234,38 @@
          <activation>
             <activeByDefault>false</activeByDefault>
          </activation>
+         <build>
+            <plugins>
+               <!-- Canonical metamodel generation -->
+               <!-- Add Generated Metamodel to source path-->               
+               <plugin>
+                  <groupId>org.bsc.maven</groupId>
+                  <artifactId>maven-processor-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>process</id>
+                        <goals>
+                           <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                           <processors>
+                              <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                           </processors>
+                           <outputDirectory>${jpa-metamodel.outputDirectory}</outputDirectory>
+                        </configuration>
+                     </execution>
+                  </executions>
+                  <dependencies>
+                     <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-jpamodelgen</artifactId>
+                        <version>${hibernate.version}</version>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+            </plugins>
+         </build>
          <dependencies>
             <dependency>
                <groupId>org.hibernate</groupId>

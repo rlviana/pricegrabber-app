@@ -40,43 +40,24 @@ public class LanguageSearchCriteria extends AbstractSearchCriteria<Language, Str
     return Language.class;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getGrouping(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Expression<Language>> getGrouping(final CriteriaBuilder builder, final Root<Language> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getHaving(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getHaving(final CriteriaBuilder builder, final Root<Language> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getRestrictions(javax.persistence.criteria.CriteriaBuilder,
-   *      javax.persistence.criteria.Root)
-   */
   @Override
   protected List<Predicate> getRestrictions(final CriteriaBuilder builder, final Root<Language> root) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /**
-   * 
-   * @see net.rlviana.pricegrabber.model.search.AbstractSearchCriteria#getOrdering(javax.persistence.criteria.CriteriaBuilder)
-   */
   @Override
   protected List<Order> getOrdering(final CriteriaBuilder builder, final Root<Language> root) {
     List<Order> orderBy = new ArrayList<Order>();

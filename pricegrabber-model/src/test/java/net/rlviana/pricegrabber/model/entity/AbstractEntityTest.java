@@ -21,8 +21,14 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 
 /**
  * @author ramon
@@ -30,6 +36,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { JPAPersistenceContext.class })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+    DirtiesContextTestExecutionListener.class,
+    TransactionDbUnitTestExecutionListener.class })
+@Transactional
 public abstract class AbstractEntityTest<T extends IEntity<K>, K extends Serializable>
     extends AbstractReadOnlyEntityTest<T, K> {
 
