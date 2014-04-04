@@ -36,10 +36,11 @@
       <springframework.security.version>3.1.4.RELEASE</springframework.security.version>
       <!-- Unit testing -->
       <dbunit.version>2.4.9</dbunit.version>
-      <spring.test.dbunit.version>1.0.1</spring.test.dbunit.version>
+      <spring-test-dbunit.version>1.0.1</spring-test-dbunit.version>
       <!-- CGlib -->
       <cglib.version>2.2.2</cglib.version>
-      <maven-checkstyle-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>
+      <maven-checkstyle-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>      
+      <maven-checkstyle-exclude-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/suppression-files.xml</maven-checkstyle-exclude-plugin.configLocation>      
       <maven-pmd-plugin.configLocation>${project.build.directory}/generated-config/config/pmd/pmd-ruleset.xml</maven-pmd-plugin.configLocation>
       <maven.findbugs-include-plugin.configLocation></maven.findbugs-include-plugin.configLocation>
       <maven.findbugs-exclude-plugin.configLocation>${project.build.directory}/generated-config/config/findbugs/findbugs-exclude.xml</maven.findbugs-exclude-plugin.configLocation>
@@ -250,12 +251,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
          </dependency>
-         <dependency>
-            <groupId>com.github.springtestdbunit</groupId>
-            <artifactId>spring-test-dbunit</artifactId>
-            <version>${spring.test.dbunit.version}</version>
-            <scope>test</scope>
-         </dependency>
          <!-- DBUnit -->
          <dependency>
             <groupId>org.dbunit</groupId>
@@ -268,6 +263,13 @@
                   <groupId>junit</groupId>
                </exclusion>
             </exclusions>
+         </dependency>
+         <!-- Spring test dbUnit -->
+         <dependency>
+         <groupId>com.github.springtestdbunit</groupId>
+         <artifactId>spring-test-dbunit</artifactId>
+         <version>${spring-test-dbunit.version}</version>
+         <scope>test</scope>
          </dependency>
       </dependencies>
    </dependencyManagement>
@@ -353,12 +355,14 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
          </plugin>
+         <!-- Extract Qa Dependencies -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
                <execution>
                   <id>unpack-shared-resources</id>
+                  <phase>initialize</phase>
                   <goals>
                      <goal>unpack-dependencies</goal>
                   </goals>
