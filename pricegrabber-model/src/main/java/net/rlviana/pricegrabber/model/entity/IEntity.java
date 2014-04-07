@@ -17,7 +17,7 @@ public interface IEntity<T extends Serializable> extends Serializable {
   int SHORTDESCRIPTION_LENGHT = 50;
   int DESCRIPTION_LENGHT = 80;
   int LONGDESCRIPTION_LENGHT = 1024;
-  int URL_LENGHT = 50;
+  int URL_LENGHT = 80;
   int CODE_2_LENGHT = 2;
   int CODE_3_LENGHT = 3;
   int CODE_8_LENGHT = 8;
