@@ -3,14 +3,14 @@
    xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
    <xs:complexType name="entity-base">
       <xs:sequence>
-         <xs:element name="lock-version" type="xs:int" nillable="true" minOccurs="1"/>
+         <xs:element name="lock-version" type="xs:int" minOccurs="1"/>
       </xs:sequence>
    </xs:complexType>
    <xs:complexType name="id-entity-base">
       <xs:complexContent>
          <xs:extension base="tns:entity-base">
             <xs:sequence>
-               <xs:element name="id" type="xs:long" nillable="true"/>
+               <xs:element name="id" type="xs:long" minOccurs="0"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -19,7 +19,7 @@
       <xs:complexContent>
          <xs:extension base="tns:entity-base">
             <xs:sequence>
-               <xs:element name="cod" nillable="true">
+               <xs:element name="cod" minOccurs="0">
                   <xs:simpleType>
                      <xs:restriction base="xs:string">
                         <xs:maxLength value="4"/>
@@ -30,4 +30,42 @@
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
+   
+   <xs:simpleType name="price">
+      <xs:restriction base="xs:decimal">
+         <xs:totalDigits value="8"/>
+         <xs:fractionDigits value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="description">
+      <xs:restriction base="xs:string">
+         <xs:length value="80"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="name">
+      <xs:restriction base="xs:string">
+         <xs:length value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="short-name">
+      <xs:restriction base="xs:string">
+         <xs:length value="25"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="currency">
+      <xs:restriction base="xs:string">
+         <xs:length value="25"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="url">
+      <xs:restriction base="xs:anyURI">
+         <xs:length value="80"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
 </xs:schema>

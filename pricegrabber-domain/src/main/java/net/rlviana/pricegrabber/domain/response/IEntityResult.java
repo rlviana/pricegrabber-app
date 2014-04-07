@@ -14,6 +14,6 @@ public interface IEntityResult {
    * 
    * @return single entity result
    */
-  public <T extends EntityBase> T getResults();
+  <T extends EntityBase> T getResults();
 
 }

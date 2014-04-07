@@ -17,9 +17,9 @@
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="name" type="xs:string" minOccurs="0"/>
-               <xs:element name="description" type="xs:string" minOccurs="0"/>
-               <xs:element name="item-type" type="tns:item-type" minOccurs="0"/>
+               <xs:element name="name" type="model:name" minOccurs="1"/>
+               <xs:element name="description" type="model:description" minOccurs="0"/>
+               <xs:element name="item-type" type="tns:item-type" minOccurs="1"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -28,8 +28,8 @@
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="code" type="xs:string" minOccurs="0"/>
-               <xs:element name="name" type="xs:string" minOccurs="0"/>
+               <xs:element name="code" type="xs:string" minOccurs="1"/>
+               <xs:element name="name" type="model:name" minOccurs="0"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -38,10 +38,10 @@
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="name" type="xs:string" minOccurs="0"/>
-               <xs:element name="site-cod" type="xs:string" minOccurs="0"/>
-               <xs:element name="item-type" type="tns:item-type" minOccurs="0"/>
-               <xs:element name="url" type="xs:string" minOccurs="0"/>
+               <xs:element name="name" type="model:name" minOccurs="1"/>
+               <xs:element name="site-cod" type="xs:string" minOccurs="1"/>
+               <xs:element name="item-type" type="tns:item-type" minOccurs="1"/>
+               <xs:element name="url" type="model:url" minOccurs="1"/>
                <xs:element name="item" type="tns:item" minOccurs="0"/>
                <xs:element name="promotions" type="tns:promotions"/>
                <xs:element name="site-item-data" type="tns:site-item-data"/>
@@ -54,20 +54,20 @@
    </xs:complexType>
    <xs:complexType name="site-item-price">
       <xs:sequence>
-         <xs:element name="price-currency" type="common:currency" minOccurs="0"/>
-         <xs:element name="price-date" type="xs:dateTime" minOccurs="0"/>
-         <xs:element name="price-value" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="price-currency" type="common:currency" minOccurs="1"/>
+         <xs:element name="price-date" type="xs:dateTime" minOccurs="1"/>
+         <xs:element name="price-value" type="model:price" minOccurs="1"/>
       </xs:sequence>
    </xs:complexType>
    <xs:complexType name="site-item-datum">
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="availability" type="xs:string" minOccurs="0"/>
+               <xs:element name="availability" type="model:name" minOccurs="0"/>
                <xs:element name="price-type" type="tns:price-type" minOccurs="0"/>
-               <xs:element name="price-currency" type="common:currency" minOccurs="0"/>
-               <xs:element name="price-date" type="xs:dateTime" minOccurs="0"/>
-               <xs:element name="price-value" type="xs:decimal" minOccurs="0"/>
+               <xs:element name="price-currency" type="common:currency" minOccurs="1"/>
+               <xs:element name="price-date" type="xs:dateTime" minOccurs="1"/>
+               <xs:element name="price-value" type="model:price" minOccurs="1"/>
                <xs:element name="site-item" type="tns:site-item" minOccurs="0"/>
             </xs:sequence>
          </xs:extension>
@@ -77,11 +77,11 @@
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="name" type="xs:string" minOccurs="0"/>
-               <xs:element name="description" type="xs:string" minOccurs="0"/>
-               <xs:element name="url" type="xs:string" minOccurs="0"/>
+               <xs:element name="name" type="model:name" minOccurs="1"/>
+               <xs:element name="description" type="model:description" minOccurs="0"/>
+               <xs:element name="url" type="model:url" minOccurs="1"/>
                <xs:element name="country" type="common:country" minOccurs="0"/>
-               <xs:element name="base-currrency" type="common:currency" minOccurs="0"/>
+               <xs:element name="base-currrency" type="common:currency" minOccurs="1"/>
                <xs:element name="promotions" type="tns:promotions"/>
                <xs:element name="site-items" type="tns:site-items"/>
             </xs:sequence>
@@ -92,9 +92,9 @@
       <xs:complexContent>
          <xs:extension base="model:id-entity-base">
             <xs:sequence>
-               <xs:element name="name" type="xs:string" minOccurs="0"/>
-               <xs:element name="description" type="xs:string" minOccurs="0"/>
-               <xs:element name="url" type="xs:string" minOccurs="0"/>
+               <xs:element name="name" type="model:name" minOccurs="1"/>
+               <xs:element name="description" type="model:description"  minOccurs="0"/>
+               <xs:element name="url" type="model:url" minOccurs="0"/>
                <xs:element name="active" type="xs:boolean" minOccurs="0"/>
                <xs:element name="begin-date" type="xs:dateTime" minOccurs="0"/>
                <xs:element name="end-date" type="xs:dateTime" minOccurs="0"/>

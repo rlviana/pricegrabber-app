@@ -10,4 +10,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlTransient
 public abstract class AbstractResponse implements IResponse {
 
+  /**
+   * 
+   * Constructor
+   */
+  protected AbstractResponse() {
+    // Does nothing
+  }
+
 }

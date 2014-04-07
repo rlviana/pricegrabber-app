@@ -7,6 +7,7 @@
       <artifactId>pricegrabber</artifactId>
       <version>0.0.1-SNAPSHOT</version>
    </parent>
+   <groupId>net.rlviana.pricegrabber</groupId>
    <artifactId>pricegrabber-domain</artifactId>
    <name>pricegrabber-domain</name>
    <description>Domain model for Pricegrabber application.</description>
@@ -38,6 +39,11 @@
          <groupId>com.fasterxml.jackson.module</groupId>
          <artifactId>jackson-module-jaxb-annotations</artifactId>
       </dependency>
+      <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.3.1</version>
+</dependency>
    </dependencies>
    <build>
       <pluginManagement>
@@ -79,33 +85,33 @@
                   <artifactId>maven-jaxb2-plugin</artifactId>
                   <executions>
                      <execution>
-                        <id>xjc-generate</id>
+                        <id>xjc</id>
                         <goals>
                            <goal>generate</goal>
                         </goals>
                         <phase>generate-sources</phase>
-                        <configuration>
-                           <verbose>true</verbose>
-                           <bindingDirectory>src/main/resources/xjb</bindingDirectory>
-                           <schemaDirectory>src/main/resources/xsd</schemaDirectory>
-                           <generateDirectory>${jaxb-model.outputDirectory}</generateDirectory>
-                           <extension>true</extension>
-                           <args>
-                              <arg>-no-header</arg>
-                              <arg>-Xxew</arg>
-                              <arg>-Xxew:instantiate lazy</arg>
-                              <arg>-Xxew:delete</arg>
-                           </args>
-                           <plugins>
-                              <plugin>
-                                 <groupId>com.github.jaxb-xew-plugin</groupId>
-                                 <artifactId>jaxb-xew-plugin</artifactId>
-                                 <version>${plugin.jaxb-xew.version}</version>
-                              </plugin>
-                           </plugins>
-                        </configuration>
                      </execution>
                   </executions>
+                  <configuration>
+                     <verbose>true</verbose>
+                     <bindingDirectory>src/main/resources/xjb</bindingDirectory>
+                     <schemaDirectory>src/main/resources/xsd</schemaDirectory>
+                     <generateDirectory>${jaxb-model.outputDirectory}</generateDirectory>
+                     <extension>true</extension>
+                     <args>
+                        <arg>-no-header</arg>
+                        <arg>-Xxew</arg>
+                        <arg>-Xxew:instantiate lazy</arg>
+                        <arg>-Xxew:delete</arg>
+                     </args> 
+                     <plugins>
+                        <plugin>
+                           <groupId>com.github.jaxb-xew-plugin</groupId>
+                           <artifactId>jaxb-xew-plugin</artifactId>
+                           <version>${plugin.jaxb-xew.version}</version>
+                        </plugin>
+                     </plugins>
+                  </configuration>
                </plugin>
                <plugin>
                   <groupId>org.codehaus.mojo</groupId>
@@ -136,7 +142,8 @@
                            <extension>true</extension>
                            <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
                            <extension>true</extension>
-                           <arguments>-b ${project.basedir}/src/main/resources/xjb/jaxb-bindings.xjb -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
+                           <arguments>-b ${project.basedir}/src/main/resources/xjb/jaxb-bindings.xjb
+                              -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
                         </configuration>
                      </execution>
                   </executions>

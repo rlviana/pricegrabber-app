@@ -14,27 +14,27 @@ public interface IResponse {
    * 
    * @return <code>true</code> or <code>false</code>
    */
-  public boolean isErrors();
+  boolean isErrors();
 
   /**
    * Set whether or not the response has any errors.
    * 
    * @param value <code>true</code> if has errors
    */
-  public void setErrors(final boolean value);
+  void setErrors(final boolean value);
 
   /**
    * Gets message list.
    * 
    * @return list of messages
    */
-  public List<Message> getMessages();
+  List<Message> getMessages();
 
   /**
    * Sets message list.
    * 
    * @param messages to assign to response
    */
-  public void setMessages(final List<Message> messages);
+  void setMessages(final List<Message> messages);
 
 }

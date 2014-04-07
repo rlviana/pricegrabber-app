@@ -3,16 +3,21 @@
    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <jaxb:globalBindings>
-      <!-- Adapters -->
-      <xjc:javaType name="java.util.Date" adapter="net.rlviana.pricegrabber.domain.adapter.DateXmlAdapter"
-         xmlType="xsd:date"/>
-      <xjc:javaType name="java.util.Date" adapter="net.rlviana.pricegrabber.domain.adapter.DateTimeXmlAdapter"
-         xmlType="xsd:dateTime"/>
-      <xjc:javaType name="java.util.Date" adapter="net.rlviana.pricegrabber.domain.adapter.DateTimeXmlAdapter"
-         xmlType="xsd:time"/>
+        <!-- use Calendar instead of XMLGregorianCalendar -->
+        <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
+            parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+            printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
+
+        <jaxb:javaType name="java.util.Calendar" xmlType="xs:date"
+            parseMethod="javax.xml.bind.DatatypeConverter.parseDate"
+            printMethod="javax.xml.bind.DatatypeConverter.printDate"/>
+
+        <jaxb:javaType name="java.util.Calendar" xmlType="xs:time"
+            parseMethod="javax.xml.bind.DatatypeConverter.parseTime"
+            printMethod="javax.xml.bind.DatatypeConverter.printTime"/>
       <!-- BigDecimal xs:decimal -->
       <xjc:javaType name="java.math.BigDecimal" adapter="net.rlviana.pricegrabber.domain.adapter.BigDecimalXmlAdapter"
-         xmlType="xsd:decimal"/>
+         xmlType="xsd:decimal" />
       <jaxb:serializable uid="1"/>
       <!-- Adds xmlroot -->
       <xjc:simple/>
