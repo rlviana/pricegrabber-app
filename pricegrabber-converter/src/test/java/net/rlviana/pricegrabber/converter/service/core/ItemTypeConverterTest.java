@@ -1,6 +1,6 @@
 package net.rlviana.pricegrabber.converter.service.core;
 
-import net.rlviana.pricegrabber.converter.service.ConverterTest;
+import net.rlviana.pricegrabber.converter.service.AbstractConverterTest;
 import net.rlviana.pricegrabber.model.entity.core.ItemType;
 
 /**
@@ -9,11 +9,11 @@ import net.rlviana.pricegrabber.model.entity.core.ItemType;
  */
 public class ItemTypeConverterTest
     extends
-    ConverterTest<ItemType, net.rlviana.pricegrabber.domain.entity.core.ItemType> {
+    AbstractConverterTest<ItemType, net.rlviana.pricegrabber.domain.entity.core.ItemType> {
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObject()
    */
   @Override
   protected net.rlviana.pricegrabber.domain.entity.core.ItemType getDomainObject() {
@@ -22,7 +22,7 @@ public class ItemTypeConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObject()
    */
 
   @Override
@@ -32,7 +32,7 @@ public class ItemTypeConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObjectClass()
    */
   @Override
   protected Class<net.rlviana.pricegrabber.domain.entity.core.ItemType> getDomainObjectClass() {
@@ -41,7 +41,7 @@ public class ItemTypeConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObjectClass()
    */
   @Override
   protected Class<ItemType> getModelObjectClass() {

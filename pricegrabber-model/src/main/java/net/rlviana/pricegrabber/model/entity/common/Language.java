@@ -23,7 +23,7 @@ public class Language implements IEntity<String> {
   private static final long serialVersionUID = -7478979310379296029L;
 
   @Id
-  @Column(name = "ID", length = CODE_2_LENGHT)
+  @Column(name = "ID", length = CODE_2_LENGHT, insertable = false, updatable = false)
   /** ISO 639-1 Code. Two letters code */
   private String id;
   @Column(name = "COD", nullable = false, length = CODE_3_LENGHT, insertable = false, updatable = false)

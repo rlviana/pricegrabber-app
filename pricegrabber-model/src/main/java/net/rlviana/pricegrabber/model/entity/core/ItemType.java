@@ -36,6 +36,8 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
   @TableGenerator(name = "PG_SEQ_ITEMTYPE", table = "PG_SEQ", pkColumnName = "SEQ_PG_TABLE",
       pkColumnValue = "SEQ_PG_ITEMTYPE", valueColumnName = "SEQ_PG_VALUE", initialValue = 10, allocationSize = 1)
   private Integer id;
+  @Column(name = "COD", nullable = false, length = CODE_8_LENGHT)
+  private String cod;
   @Column(name = "NAME", nullable = false, length = SHORTNAME_LENGHT)
   private String name;
   @Column(name = "DESCRIPTION", length = SHORTDESCRIPTION_LENGHT)
@@ -67,6 +69,20 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
   @Override
   public void setId(final Integer id) {
     this.id = id;
+  }
+
+  /**
+   * @return the cod
+   */
+  public String getCod() {
+    return cod;
+  }
+
+  /**
+   * @param cod the cod to set
+   */
+  public void setCod(String cod) {
+    this.cod = cod;
   }
 
   /**
@@ -141,22 +157,21 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
   }
 
   /**
-   * @return
+   * 
    * @see java.lang.Object#hashCode()
    */
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = super.hashCode();
+    result = prime * result + (children == null ? 0 : children.hashCode());
+    result = prime * result + (cod == null ? 0 : cod.hashCode());
     result = prime * result + (id == null ? 0 : id.hashCode());
-    result = prime * result + (name == null ? 0 : name.hashCode());
-    result = prime * result + (parent == null ? 0 : parent.hashCode());
     return result;
   }
 
   /**
-   * @param obj
-   * @return
+   * 
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -171,6 +186,20 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
       return false;
     }
     ItemType other = (ItemType) obj;
+    if (children == null) {
+      if (other.children != null) {
+        return false;
+      }
+    } else if (!children.equals(other.children)) {
+      return false;
+    }
+    if (cod == null) {
+      if (other.cod != null) {
+        return false;
+      }
+    } else if (!cod.equals(other.cod)) {
+      return false;
+    }
     if (id == null) {
       if (other.id != null) {
         return false;
@@ -178,31 +207,28 @@ public class ItemType extends AbstractVersionedEntity<Integer> {
     } else if (!id.equals(other.id)) {
       return false;
     }
-    if (name == null) {
-      if (other.name != null) {
-        return false;
-      }
-    } else if (!name.equals(other.name)) {
-      return false;
-    }
-    if (parent == null) {
-      if (other.parent != null) {
-        return false;
-      }
-    } else if (!parent.equals(other.parent)) {
-      return false;
-    }
     return true;
   }
 
   /**
-   * @return
+   * 
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("ItemType [id=").append(id).append(", name=").append(name).append(", parent=").append(parent)
+    builder.append("ItemType [id=")
+        .append(id)
+        .append(", cod=")
+        .append(cod)
+        .append(", name=")
+        .append(name)
+        .append(", description=")
+        .append(description)
+        .append(", parent=")
+        .append(parent)
+        .append(", children=")
+        .append(children)
         .append("]");
     return builder.toString();
   }

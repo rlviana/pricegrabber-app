@@ -1,6 +1,6 @@
 package net.rlviana.pricegrabber.converter.service.common;
 
-import net.rlviana.pricegrabber.converter.service.ConverterTest;
+import net.rlviana.pricegrabber.converter.service.AbstractConverterTest;
 import net.rlviana.pricegrabber.model.entity.common.Language;
 
 /**
@@ -9,11 +9,11 @@ import net.rlviana.pricegrabber.model.entity.common.Language;
  */
 public class LanguageConverterTest
     extends
-    ConverterTest<Language, net.rlviana.pricegrabber.domain.entity.common.Language> {
+    AbstractConverterTest<Language, net.rlviana.pricegrabber.domain.entity.common.Language> {
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObject()
    */
   @Override
   protected net.rlviana.pricegrabber.domain.entity.common.Language getDomainObject() {
@@ -22,7 +22,7 @@ public class LanguageConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObject()
    */
 
   @Override
@@ -32,7 +32,7 @@ public class LanguageConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObjectClass()
    */
   @Override
   protected Class<net.rlviana.pricegrabber.domain.entity.common.Language> getDomainObjectClass() {
@@ -41,7 +41,7 @@ public class LanguageConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObjectClass()
    */
   @Override
   protected Class<Language> getModelObjectClass() {

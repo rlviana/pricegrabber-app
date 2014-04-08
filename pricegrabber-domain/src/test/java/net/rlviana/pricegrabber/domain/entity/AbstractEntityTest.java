@@ -232,7 +232,7 @@ public abstract class AbstractEntityTest<T> {
   protected Site getTestSite() {
     Site site = new Site();
     site.setCountry(getTestCountry());
-    site.setBaseCurrrency(getTestCurrency());
+    site.setBaseCurrency(getTestCurrency());
     site.setDescription("description");
     site.setId(1L);
     site.getPromotions().add(getTestPromotion());

@@ -1,6 +1,6 @@
 package net.rlviana.pricegrabber.converter.service.core;
 
-import net.rlviana.pricegrabber.converter.service.ConverterTest;
+import net.rlviana.pricegrabber.converter.service.AbstractConverterTest;
 import net.rlviana.pricegrabber.model.entity.core.SiteItemDatum;
 
 /**
@@ -9,11 +9,11 @@ import net.rlviana.pricegrabber.model.entity.core.SiteItemDatum;
  */
 public class SiteItemDatumConverterTest
     extends
-    ConverterTest<SiteItemDatum, net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum> {
+    AbstractConverterTest<SiteItemDatum, net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum> {
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObject()
    */
   @Override
   protected net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum getDomainObject() {
@@ -22,7 +22,7 @@ public class SiteItemDatumConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObject()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObject()
    */
 
   @Override
@@ -32,7 +32,7 @@ public class SiteItemDatumConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getDomainObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getDomainObjectClass()
    */
   @Override
   protected Class<net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum> getDomainObjectClass() {
@@ -41,7 +41,7 @@ public class SiteItemDatumConverterTest
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.converter.service.ConverterTest#getModelObjectClass()
+   * @see net.rlviana.pricegrabber.converter.service.AbstractConverterTest#getModelObjectClass()
    */
   @Override
   protected Class<SiteItemDatum> getModelObjectClass() {

@@ -1,5 +1,6 @@
 package net.rlviana.pricegrabber.converter.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
@@ -35,9 +36,9 @@ import org.slf4j.LoggerFactory;
  * 
  */
 @SuppressWarnings("rawtypes")
-public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
+public abstract class AbstractConverterTest<T extends IEntity, V extends EntityBase> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConverterTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractConverterTest.class);
 
   private static final int MAX_ITEMS = 10;
 
@@ -54,6 +55,7 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
     List<String> mappingFileUrls = new ArrayList<String>();
     mappingFileUrls.add("dozer/commonMappings.xml");
     mappingFileUrls.add("dozer/coreMappings.xml");
+    // mappingFileUrls.add("dozer/searchMappings.xml");
     mapper.setMappingFiles(mappingFileUrls);
   }
 
@@ -79,69 +81,52 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
   }
 
   @Test
-  public void test() {
-    V domainObject = getDomainObject();
-    T modelObject = getModelObject();
-    LOGGER.trace("Domain Object:{}", domainObject);
-    LOGGER.trace("Model Object:{}", modelObject);
-    LOGGER.trace("Converted from Domain:{}", getConverter().convertFrom(domainObject));
-    LOGGER.trace("Converted from Model:{}", getConverter().convertTo(modelObject));
-    // // Map from TestObject to XMLBeans
-    // TestObject to = new TestObject();
-    // to.setOne("one");
-    // GetWeatherByZipCodeDocument doc =
-    // mapper.map(to, GetWeatherByZipCodeDocument.class);
-    // assertEquals(to.getOne(),
-    // doc.getGetWeatherByZipCode().getZipCode());
-    //
-    // // Map from XMLBeans to TestObject
-    // GetWeatherByZipCodeDocument res =
-    // GetWeatherByZipCodeDocument.Factory.newInstance();
-    // GetWeatherByZipCode zipCode =
-    // res.addNewGetWeatherByZipCode();
-    // zipCode.setZipCode("one");
-    // TestObject to2 = mapper.map(res, TestObject.class);
-    // assertEquals(res.getGetWeatherByZipCode().getZipCode(),
-    // to2.getOne());
-  }
-
-  @Test
-  public void testDomainOK() {
+  public void testDomainClassConversionOK() {
     assertTrue(getModelObjectClass().equals(getConverter().convertFrom(getDomainObject()).getClass()));
   }
 
   @Test
-  public void testDomainConversionOK() {
+  public void testModelClassConversionOK() {
+    assertTrue(getDomainObjectClass().equals(getConverter().convertTo(getModelObject()).getClass()));
   }
 
   @Test
-  public void testModelOK() {
-    LOGGER.debug("{}-{}", getDomainObjectClass(), getConverter().convertTo(getModelObject()).getClass());
-    LOGGER.debug("{}", getConverter().convertTo(getModelObject()).getClass());
-    assertTrue(getDomainObjectClass().isInstance(getConverter().convertTo(getModelObject())));
+  public void testConversionOK() {
+    T modelObject = getModelObject();
+    V domainObject = getConverter().convertTo(modelObject);
+    assertEquals(modelObject, getConverter().convertFrom(domainObject));
   }
 
   @Test
-  public void testModelConversionOK() {
+  public void testConversionListOK() {
+    List<T> modelObjectList = getModelObjectList();
+    List<V> domainObjectList = getConverter().convertListTo(modelObjectList);
+    assertEquals(modelObjectList, getConverter().convertListFrom(domainObjectList));
   }
 
-  @Test
-  public void testDomainListOK() {
-    assertTrue(getModelObjectList().getClass().equals(getConverter().convertListFrom(getDomainObjectList()).getClass()));
-  }
-
-  @Test
-  public void testDomainListConversionOK() {
-  }
-
-  @Test
-  public void testModelListOK() {
-    assertTrue(getDomainObjectList().getClass().equals(getConverter().convertListTo(getModelObjectList()).getClass()));
-  }
-
-  @Test
-  public void testModelListConversionOK() {
-  }
+  //
+  // @Test
+  // public void testModelConversionOK() {
+  // }
+  //
+  // @Test
+  // public void testDomainListOK() {
+  // assertTrue(getModelObjectList().getClass().equals(getConverter().convertListFrom(getDomainObjectList()).getClass()));
+  // }
+  //
+  // @Test
+  // public void testDomainListConversionClassOK() {
+  // assertTrue(getModelObjectList().getClass().equals(getConverter().convertListFrom(getDomainObjectList()).getClass()));
+  // }
+  //
+  // @Test
+  // public void testModelListOK() {
+  // assertTrue(getDomainObjectList().getClass().equals(getConverter().convertListTo(getModelObjectList()).getClass()));
+  // }
+  //
+  // @Test
+  // public void testModelListConversionOK() {
+  // }
 
   protected List<T> getModelObjectList() {
     List<T> list =
@@ -244,7 +229,15 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
     itemType.setId(1);
     itemType.setName("name");
     itemType.setDescription("description");
-    // TODO Remember include children
+    itemType.addChildren(getTestModelItemTypeChild());
+    return itemType;
+  }
+
+  protected ItemType getTestModelItemTypeChild() {
+    ItemType itemType = new ItemType();
+    itemType.setId(10);
+    itemType.setName("childName");
+    itemType.setDescription("childDescription");
     return itemType;
   }
 
@@ -279,8 +272,8 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
     promotion.setId(1L);
     promotion.setName("name");
     promotion.setDescription("description");
-    promotion.setBeginDate(Calendar.getInstance().getTime());
-    promotion.setEndDate(Calendar.getInstance().getTime());
+    promotion.setBeginDate(Calendar.getInstance());
+    promotion.setEndDate(Calendar.getInstance());
     promotion.setUrl("url");
     promotion.setActive(Boolean.TRUE);
     // promotion.setSiteItems(siteItems);
@@ -320,7 +313,7 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
   private SiteItemPrice getTestPrice() {
     SiteItemPrice price = new SiteItemPrice();
     price.setPriceCurrency(getTestDomainCurrency());
-    price.setPriceDate(Calendar.getInstance().getTime());
+    price.setPriceDate(Calendar.getInstance());
     price.setPriceValue(BigDecimal.valueOf(10));
     return price;
   }
@@ -343,7 +336,7 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
     siteItemDatum.setId(1L);
     siteItemDatum.setAvailability("availability");
     siteItemDatum.setPriceCurrency(getTestDomainCurrency());
-    siteItemDatum.setPriceDate(Calendar.getInstance().getTime());
+    siteItemDatum.setPriceDate(Calendar.getInstance());
     siteItemDatum.setPriceType(net.rlviana.pricegrabber.domain.entity.core.PriceType.REGULAR_PRICE);
     siteItemDatum.setPriceValue(BigDecimal.valueOf(10));
     siteItemDatum.setSiteItem(getTestDomainSiteItem());
@@ -369,7 +362,7 @@ public abstract class ConverterTest<T extends IEntity, V extends EntityBase> {
     site.setName("name");
     site.setUrl("url");
     site.setDescription("description");
-    site.setBaseCurrrency(getTestDomainCurrency());
+    site.setBaseCurrency(getTestDomainCurrency());
     site.setCountry(getTestDomainCountry());
     // site.setPromotions(promotions);
     // site.setSiteItems(siteItems);

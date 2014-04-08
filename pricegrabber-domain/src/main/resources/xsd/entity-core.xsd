@@ -30,6 +30,7 @@
             <xs:sequence>
                <xs:element name="code" type="xs:string" minOccurs="1"/>
                <xs:element name="name" type="model:name" minOccurs="0"/>
+               <xs:element name="itemTypes" type="tns:item-types"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -42,6 +43,7 @@
                <xs:element name="site-cod" type="xs:string" minOccurs="1"/>
                <xs:element name="item-type" type="tns:item-type" minOccurs="1"/>
                <xs:element name="url" type="model:url" minOccurs="1"/>
+               <xs:element name="site" type="tns:site" minOccurs="1"/>
                <xs:element name="item" type="tns:item" minOccurs="0"/>
                <xs:element name="promotions" type="tns:promotions"/>
                <xs:element name="site-item-data" type="tns:site-item-data"/>
@@ -81,7 +83,8 @@
                <xs:element name="description" type="model:description" minOccurs="0"/>
                <xs:element name="url" type="model:url" minOccurs="1"/>
                <xs:element name="country" type="common:country" minOccurs="0"/>
-               <xs:element name="base-currrency" type="common:currency" minOccurs="1"/>
+               <xs:element name="base-currency" type="common:currency" minOccurs="1"/>
+               <xs:element name="base-language" type="common:language" minOccurs="1"/>
                <xs:element name="promotions" type="tns:promotions"/>
                <xs:element name="site-items" type="tns:site-items"/>
             </xs:sequence>

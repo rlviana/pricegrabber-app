@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://dozer.sourceforge.net
-          http://dozer.sourceforge.net/schema/beanmapping.xsd">
-<!-- Global configuration -->
-<!-- Can be overridden in mapping elements -->      
-<configuration>
-<stop-on-errors>true</stop-on-errors>
-<trim-strings>true</trim-strings>
-</configuration>
-<!-- Mappings -->
-<mapping>
-  <class-a>net.rlviana.pricegrabber.model.entity.common.Country</class-a>
-  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
-    net.rlviana.pricegrabber.domain.entity.common.Country
-  </class-b>
-  <field>
-  <a>codNum</a>
-  <b>code</b>
-  </field>
-</mapping>
-<mapping>
-  <class-a>net.rlviana.pricegrabber.model.entity.common.Currency</class-a>
-  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
-    net.rlviana.pricegrabber.domain.entity.common.Currency
-  </class-b>
-  <field>
-  <a>id</a>
-  <b>code</b>
-  </field>  
-</mapping>
-<mapping>
-  <class-a>net.rlviana.pricegrabber.model.entity.common.Language</class-a>
-  <class-b bean-factory="org.dozer.factory.JAXBBeanFactory">
-    net.rlviana.pricegrabber.domain.entity.common.Language
-  </class-b>
-  <field>
-  <a>id</a>
-  <b>code</b>
-  </field>
-</mapping>  
+          http://dozer.sourceforge.net/schema/beanmapping.xsd"
+>
+   <!-- Global configuration -->
+   <!-- Can be overridden in mapping elements -->
+   <configuration>
+      <stop-on-errors>true</stop-on-errors>
+      <trim-strings>true</trim-strings>
+   </configuration>
+   <!-- Mappings -->
+   <mapping>
+      <class-a>net.rlviana.pricegrabber.model.entity.common.Country</class-a>
+      <class-b bean-factory="org.dozer.factory.JAXBBeanFactory"> net.rlviana.pricegrabber.domain.entity.common.Country
+      </class-b>
+      <field>
+         <a>id</a>
+         <b>code</b>
+      </field>
+   </mapping>
+   <mapping>
+      <class-a>net.rlviana.pricegrabber.model.entity.common.Currency</class-a>
+      <class-b bean-factory="org.dozer.factory.JAXBBeanFactory"> net.rlviana.pricegrabber.domain.entity.common.Currency
+      </class-b>
+      <field>
+         <a>id</a>
+         <b>code</b>
+      </field>
+   </mapping>
+   <mapping>
+      <class-a>net.rlviana.pricegrabber.model.entity.common.Language</class-a>
+      <class-b bean-factory="org.dozer.factory.JAXBBeanFactory"> net.rlviana.pricegrabber.domain.entity.common.Language
+      </class-b>
+      <field>
+         <a>id</a>
+         <b>code</b>
+      </field>
+   </mapping>
 </mappings>
