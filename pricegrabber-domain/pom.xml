@@ -39,11 +39,6 @@
          <groupId>com.fasterxml.jackson.module</groupId>
          <artifactId>jackson-module-jaxb-annotations</artifactId>
       </dependency>
-      <dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.3.1</version>
-</dependency>
    </dependencies>
    <build>
       <pluginManagement>
@@ -103,7 +98,7 @@
                         <arg>-Xxew</arg>
                         <arg>-Xxew:instantiate lazy</arg>
                         <arg>-Xxew:delete</arg>
-                     </args> 
+                     </args>
                      <plugins>
                         <plugin>
                            <groupId>com.github.jaxb-xew-plugin</groupId>

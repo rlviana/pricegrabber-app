@@ -12,7 +12,6 @@ import java.io.Serializable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
 
 import net.rlviana.pricegrabber.context.JPAPersistenceContext;
 
@@ -22,7 +21,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -46,9 +44,6 @@ public abstract class AbstractReadOnlyEntityTest<T extends IEntity<K>, K extends
 
   @PersistenceContext
   private EntityManager entityManager;
-
-  @Autowired
-  private DataSource dataSource;
 
   @BeforeClass
   public static void setUpTest() {

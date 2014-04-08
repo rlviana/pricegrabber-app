@@ -4,6 +4,8 @@
  */
 package net.rlviana.pricegrabber.domain.entity;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -25,8 +27,6 @@ import net.rlviana.pricegrabber.domain.entity.core.SiteItem;
 import net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum;
 import net.rlviana.pricegrabber.domain.entity.core.SiteItemPrice;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -88,48 +88,41 @@ public abstract class AbstractEntityTest<T> {
   }
 
   @Test
-  public void testMarshallXml() throws JAXBException {
-    String entityOK = ToStringBuilder.reflectionToString(getEntityOK(), ToStringStyle.SHORT_PREFIX_STYLE);
-    LOGGER.trace("entityOK->{}", entityOK);
+  public void testMarshallXml() throws Exception {
+    String entityOK = getEntityJSON(getEntityOK());
     StringWriter stringWriter = new StringWriter();
     getMarshaller().marshal(getEntityOK(), stringWriter);
-    LOGGER.trace("xml->{}", stringWriter.toString());
-    String result =
-        ToStringBuilder.reflectionToString(getUnmarshaller().unmarshal(new StringReader(stringWriter.toString())),
-            ToStringStyle.SHORT_PREFIX_STYLE);
-    LOGGER.trace("result->{}", result);
-    // assertEquals(result, entityOK);
+    String result = getEntityJSON(getUnmarshaller().unmarshal(new StringReader(stringWriter.toString())));
+    assertEquals(result, entityOK);
 
   }
 
   @Test
-  public void testUnmarshallXml() throws JAXBException {
-    String entityOK = ToStringBuilder.reflectionToString(getEntityOK(), ToStringStyle.SHORT_PREFIX_STYLE);
+  public void testUnmarshallXml() throws JAXBException, JsonGenerationException, JsonMappingException, IOException {
+    String entityOK = getEntityJSON(getEntityOK());
     Object resultEntity =
         getUnmarshaller().unmarshal(new InputSource(new java.io.StringReader(getEntityXML(getEntityOK()))));
-    String result = ToStringBuilder.reflectionToString(resultEntity, ToStringStyle.SHORT_PREFIX_STYLE);
-    // assertEquals(result, entityOK);
+    String result = getEntityJSON(resultEntity);
+    assertEquals(result, entityOK);
 
   }
 
   @Test
   public void testMarshallJson() throws JsonGenerationException, JsonMappingException, IOException {
-    String entityOK = ToStringBuilder.reflectionToString(getEntityOK(), ToStringStyle.SHORT_PREFIX_STYLE);
+    String entityOK = getEntityJSON(getEntityOK());
     StringWriter stringWriter = new StringWriter();
     mapper.writeValue(stringWriter, getEntityOK());
     String result =
-        ToStringBuilder.reflectionToString(mapper.readValue(stringWriter.toString(),
-            getDomainEntityType()),
-            ToStringStyle.SHORT_PREFIX_STYLE);
-    // assertEquals(result, entityOK);
+        getEntityJSON(mapper.readValue(stringWriter.toString(), getDomainEntityType()));
+    assertEquals(result, entityOK);
   }
 
   @Test
   public void testUnmarshallJson() throws JsonParseException, JsonMappingException, IOException, JAXBException {
-    String entityOK = ToStringBuilder.reflectionToString(getEntityOK(), ToStringStyle.SHORT_PREFIX_STYLE);
+    String entityOK = getEntityJSON(getEntityOK());
     T resultEntity = mapper.readValue(getEntityJSON(getEntityOK()), getDomainEntityType());
-    String result = ToStringBuilder.reflectionToString(resultEntity, ToStringStyle.SHORT_PREFIX_STYLE);
-    // assertEquals(result, entityOK);
+    String result = getEntityJSON(resultEntity);
+    assertEquals(result, entityOK);
   }
 
   protected Marshaller getMarshaller() throws JAXBException {
@@ -148,9 +141,9 @@ public abstract class AbstractEntityTest<T> {
 
   protected abstract T getEntityKO();
 
-  protected String getEntityJSON(T entity) throws JsonGenerationException, JsonMappingException, IOException {
+  protected String getEntityJSON(Object o) throws JsonGenerationException, JsonMappingException, IOException {
     StringWriter stringWriter = new StringWriter();
-    mapper.writeValue(stringWriter, entity);
+    mapper.writeValue(stringWriter, o);
     return stringWriter.toString();
 
   }
