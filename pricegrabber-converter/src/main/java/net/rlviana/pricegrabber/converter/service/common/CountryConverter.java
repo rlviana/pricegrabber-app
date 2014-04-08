@@ -16,7 +16,7 @@ public class CountryConverter extends BaseConverter<Country, net.rlviana.pricegr
    * 
    * @param mapper
    */
-  protected CountryConverter(Mapper mapper) {
+  protected CountryConverter(final Mapper mapper) {
     super(mapper, Country.class, net.rlviana.pricegrabber.domain.entity.common.Country.class);
   }
 

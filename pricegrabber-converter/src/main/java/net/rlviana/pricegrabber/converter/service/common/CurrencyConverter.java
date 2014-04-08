@@ -20,7 +20,7 @@ public class CurrencyConverter
    * 
    * @param mapper
    */
-  protected CurrencyConverter(Mapper mapper) {
+  protected CurrencyConverter(final Mapper mapper) {
     super(mapper, Currency.class, net.rlviana.pricegrabber.domain.entity.common.Currency.class);
   }
 

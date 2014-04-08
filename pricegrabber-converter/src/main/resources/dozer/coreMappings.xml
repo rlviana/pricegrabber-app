@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://dozer.sourceforge.net
-          http://dozer.sourceforge.net/schema/beanmapping.xsd"
->
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
    <!-- Mappings -->
    <mapping>
       <class-a>net.rlviana.pricegrabber.model.entity.core.Item</class-a>
@@ -63,5 +62,9 @@
       </class-b>
       <!-- Enum Mapping --> 
       <!-- TODO Requires custom mapping-->
+      <field custom-converter="net.rlviana.pricegrabber.converter.custom.PriceTypeConverter" >
+         <a>priceType</a>
+         <b>priceType</b>
+      </field>
    </mapping>
 </mappings>

@@ -12,7 +12,6 @@
    <description>Maven module implementing conversion among different models</description>
    <properties>
       <dozer.version>5.4.0</dozer.version>
-      <pricegrabber.version>0.0.1-SNAPSHOT</pricegrabber.version>
    </properties>
    <dependencyManagement>
       <dependencies>
@@ -41,12 +40,10 @@
       <dependency>
          <groupId>net.rlviana.pricegrabber</groupId>
          <artifactId>pricegrabber-domain</artifactId>
-         <version>${pricegrabber.version}</version>
       </dependency>
       <dependency>
          <groupId>net.rlviana.pricegrabber</groupId>
          <artifactId>pricegrabber-model</artifactId>
-         <version>${pricegrabber.version}</version>
       </dependency>
       <dependency>
          <groupId>net.sf.dozer</groupId>

@@ -19,7 +19,7 @@ public interface ListConverter<T, V> extends Converter<T, V> {
    * @param list to convert
    * @return converted list
    */
-  public List<V> convertListTo(Collection<T> list);
+  List<V> convertListTo(Collection<T> list);
 
   /**
    * Converts from a domain model list to a entity model list.
@@ -27,6 +27,6 @@ public interface ListConverter<T, V> extends Converter<T, V> {
    * @param list to convert
    * @return converted list
    */
-  public List<T> convertListFrom(Collection<V> list);
+  List<T> convertListFrom(Collection<V> list);
 
 }

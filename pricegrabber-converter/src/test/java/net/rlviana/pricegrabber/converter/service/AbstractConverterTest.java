@@ -94,6 +94,7 @@ public abstract class AbstractConverterTest<T extends IEntity, V extends EntityB
   public void testConversionOK() {
     T modelObject = getModelObject();
     V domainObject = getConverter().convertTo(modelObject);
+    LOGGER.trace("{}->{}", modelObject, getConverter().convertFrom(domainObject));
     assertEquals(modelObject, getConverter().convertFrom(domainObject));
   }
 
@@ -103,30 +104,6 @@ public abstract class AbstractConverterTest<T extends IEntity, V extends EntityB
     List<V> domainObjectList = getConverter().convertListTo(modelObjectList);
     assertEquals(modelObjectList, getConverter().convertListFrom(domainObjectList));
   }
-
-  //
-  // @Test
-  // public void testModelConversionOK() {
-  // }
-  //
-  // @Test
-  // public void testDomainListOK() {
-  // assertTrue(getModelObjectList().getClass().equals(getConverter().convertListFrom(getDomainObjectList()).getClass()));
-  // }
-  //
-  // @Test
-  // public void testDomainListConversionClassOK() {
-  // assertTrue(getModelObjectList().getClass().equals(getConverter().convertListFrom(getDomainObjectList()).getClass()));
-  // }
-  //
-  // @Test
-  // public void testModelListOK() {
-  // assertTrue(getDomainObjectList().getClass().equals(getConverter().convertListTo(getModelObjectList()).getClass()));
-  // }
-  //
-  // @Test
-  // public void testModelListConversionOK() {
-  // }
 
   protected List<T> getModelObjectList() {
     List<T> list =

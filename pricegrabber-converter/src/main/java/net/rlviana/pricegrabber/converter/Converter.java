@@ -17,7 +17,7 @@ public interface Converter<T, V> {
    * @param source
    * @return
    */
-  public V convertTo(T source);
+  V convertTo(T source);
 
   /**
    * Converts from a domain model to the persistence model.
@@ -25,6 +25,6 @@ public interface Converter<T, V> {
    * @param source
    * @return
    */
-  public T convertFrom(V source);
+  T convertFrom(V source);
 
 }

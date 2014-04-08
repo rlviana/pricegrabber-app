@@ -7,8 +7,11 @@ import net.rlviana.pricegrabber.model.entity.IEntity;
 import org.dozer.Mapper;
 
 /**
+ * 
  * @author ramon
  * 
+ * @param <T> Source Class
+ * @param <V> Destination Class
  */
 @SuppressWarnings("rawtypes")
 public class BaseConverter<T extends IEntity, V extends EntityBase> extends AbstractMapperConverter<T, V> {
@@ -20,7 +23,7 @@ public class BaseConverter<T extends IEntity, V extends EntityBase> extends Abst
    * @param tClazz
    * @param vClazz
    */
-  protected BaseConverter(Mapper mapper, Class<T> tClazz, Class<V> vClazz) {
+  protected BaseConverter(final Mapper mapper, final Class<T> tClazz, final Class<V> vClazz) {
     super(mapper, tClazz, vClazz);
   }
 

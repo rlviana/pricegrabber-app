@@ -20,7 +20,7 @@ public class LanguageConverter
    * 
    * @param mapper
    */
-  protected LanguageConverter(Mapper mapper) {
+  protected LanguageConverter(final Mapper mapper) {
     super(mapper, Language.class, net.rlviana.pricegrabber.domain.entity.common.Language.class);
   }
 

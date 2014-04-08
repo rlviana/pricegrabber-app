@@ -39,6 +39,9 @@
       <spring-test-dbunit.version>1.0.1</spring-test-dbunit.version>
       <!-- CGlib -->
       <cglib.version>2.2.2</cglib.version>
+      <!-- Pricegrabber version -->
+      <pricegrabber.version>${project.version}</pricegrabber.version>
+      <!-- QA configuration properties -->
       <maven-checkstyle-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>      
       <maven-checkstyle-exclude-plugin.configLocation>${project.build.directory}/generated-config/config/checkstyle/suppression-files.xml</maven-checkstyle-exclude-plugin.configLocation>      
       <maven-pmd-plugin.configLocation>${project.build.directory}/generated-config/config/pmd/pmd-ruleset.xml</maven-pmd-plugin.configLocation>
@@ -271,6 +274,17 @@
          <version>${spring-test-dbunit.version}</version>
          <scope>test</scope>
          </dependency>
+         <!-- Module dependencies -->
+      <dependency>
+         <groupId>net.rlviana.pricegrabber</groupId>
+         <artifactId>pricegrabber-domain</artifactId>
+         <version>${pricegrabber.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>net.rlviana.pricegrabber</groupId>
+         <artifactId>pricegrabber-model</artifactId>
+         <version>${pricegrabber.version}</version>
+      </dependency>
       </dependencies>
    </dependencyManagement>
    <dependencies>

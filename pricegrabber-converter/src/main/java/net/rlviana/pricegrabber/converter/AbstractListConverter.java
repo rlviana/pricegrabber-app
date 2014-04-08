@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class AbstractListConverter<T, V> implements ListConverter<T, V> {
 
   @Override
-  public List<V> convertListTo(Collection<T> sourceList) {
+  public List<V> convertListTo(final Collection<T> sourceList) {
     List<V> results = new ArrayList<V>();
 
     for (T item : sourceList) {
@@ -27,7 +27,7 @@ public abstract class AbstractListConverter<T, V> implements ListConverter<T, V>
   }
 
   @Override
-  public List<T> convertListFrom(Collection<V> sourceList) {
+  public List<T> convertListFrom(final Collection<V> sourceList) {
     List<T> results = new ArrayList<T>();
 
     for (V item : sourceList) {

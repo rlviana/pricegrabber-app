@@ -13,7 +13,7 @@ public enum PriceType {
 
   REGULAR_PRICE(1),
   SPECIAL_PRICE(2),
-  MEMBER_PRICE(3);
+  DISCOUNT_PRICE(3);
 
   private int value;
 

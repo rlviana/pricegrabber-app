@@ -289,9 +289,23 @@ public class Promotion extends AbstractVersionedEntity<Long> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("Promotion [id=").append(id).append(", name=").append(name).append(", description=")
-        .append(description).append(", url=").append(url).append(", site=").append(site).append(", beginDate=")
-        .append(beginDate).append(", endDate=").append(endDate).append(", active=").append(active).append("]");
+    builder.append("Promotion [id=")
+        .append(id)
+        .append(", name=")
+        .append(name)
+        .append(", description=")
+        .append(description)
+        .append(", url=")
+        .append(url)
+        .append(", site=")
+        .append(site)
+        .append(", beginDate=")
+        .append(beginDate != null ? beginDate.getTime() : "null")
+        .append(", endDate=")
+        .append(endDate != null ? endDate.getTime() : "null")
+        .append(", active=")
+        .append(active)
+        .append("]");
     return builder.toString();
   }
 

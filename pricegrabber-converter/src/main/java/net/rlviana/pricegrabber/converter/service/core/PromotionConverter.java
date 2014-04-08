@@ -20,7 +20,7 @@ public class PromotionConverter
    * 
    * @param mapper
    */
-  protected PromotionConverter(Mapper mapper) {
+  protected PromotionConverter(final Mapper mapper) {
     super(mapper, Promotion.class, net.rlviana.pricegrabber.domain.entity.core.Promotion.class);
   }
 

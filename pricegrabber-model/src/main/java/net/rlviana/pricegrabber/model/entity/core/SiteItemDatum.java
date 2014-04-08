@@ -230,9 +230,21 @@ public class SiteItemDatum extends AbstractVersionedEntity<Long> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("SiteItemDatum [id=").append(id).append(", priceType=").append(priceType).append(", priceDate=")
-        .append(priceDate).append(", priceValue=").append(priceValue).append(", priceCurrency=").append(priceCurrency)
-        .append(", availability=").append(availability).append(", siteItem=").append(siteItem).append("]");
+    builder.append("SiteItemDatum [id=")
+        .append(id)
+        .append(", priceType=")
+        .append(priceType)
+        .append(", priceDate=")
+        .append(priceDate != null ? priceDate.getTime() : "null")
+        .append(", priceValue=")
+        .append(priceValue)
+        .append(", priceCurrency=")
+        .append(priceCurrency)
+        .append(", availability=")
+        .append(availability)
+        .append(", siteItem=")
+        .append(siteItem)
+        .append("]");
     return builder.toString();
   }
 
