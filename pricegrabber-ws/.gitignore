@@ -1,0 +1,29 @@
+# IDE support files
+.classpath
+.project
+.metadata
+.settings
+.wtpmodules
+.pmd
+.checkstyle
+reports/
+
+#Generated folders
+target/
+bin/
+
+# General folders
+local
+nbproject
+
+# logs
+*.log
+
+# mac files
+.DS_Store
+
+
+ 
+
+/target
+/target
