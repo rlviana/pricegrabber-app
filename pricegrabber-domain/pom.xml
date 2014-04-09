@@ -136,7 +136,6 @@
                            <verbose>true</verbose>
                            <extension>true</extension>
                            <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
-                           <extension>true</extension>
                            <arguments>-b ${project.basedir}/src/main/resources/xjb/jaxb-bindings.xjb
                               -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
                         </configuration>
