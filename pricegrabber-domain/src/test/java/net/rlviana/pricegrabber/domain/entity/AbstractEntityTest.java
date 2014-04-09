@@ -49,6 +49,8 @@ public abstract class AbstractEntityTest<T> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractEntityTest.class);
 
+  private static final long TIME_MILIS = 0;
+
   private JAXBContext instance = null;
 
   private ObjectMapper mapper;
@@ -58,6 +60,7 @@ public abstract class AbstractEntityTest<T> {
    */
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
+    LOGGER.trace("Test started");
   }
 
   /**
@@ -65,6 +68,7 @@ public abstract class AbstractEntityTest<T> {
    */
   @AfterClass
   public static void tearDownAfterClass() throws Exception {
+    LOGGER.trace("Test finished");
   }
 
   /**
@@ -185,7 +189,7 @@ public abstract class AbstractEntityTest<T> {
   private SiteItemPrice getTestPrice() {
     SiteItemPrice price = new SiteItemPrice();
     price.setPriceCurrency(getTestCurrency());
-    price.setPriceDate(Calendar.getInstance());
+    price.setPriceDate(getCalendar());
     price.setPriceValue(BigDecimal.valueOf(10.1));
     return price;
   }
@@ -207,8 +211,8 @@ public abstract class AbstractEntityTest<T> {
     promotion.setName("name");
     promotion.setDescription("description");
     promotion.setUrl("url");
-    promotion.setBeginDate(Calendar.getInstance());
-    promotion.setEndDate(Calendar.getInstance());
+    promotion.setBeginDate(getCalendar());
+    promotion.setEndDate(getCalendar());
     promotion.setActive(Boolean.FALSE);
     promotion.getSiteItems().add(getTestSiteItem());
     return promotion;
@@ -258,11 +262,17 @@ public abstract class AbstractEntityTest<T> {
     SiteItemDatum siteItemDatum = new SiteItemDatum();
     siteItemDatum.setId(1L);
     siteItemDatum.setPriceCurrency(getTestCurrency());
-    siteItemDatum.setPriceDate(Calendar.getInstance());
+    siteItemDatum.setPriceDate(getCalendar());
     siteItemDatum.setPriceValue(BigDecimal.valueOf(10.1));
     siteItemDatum.setSiteItem(getTestSiteItem());
     return siteItemDatum;
 
+  }
+
+  private Calendar getCalendar() {
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(TIME_MILIS);
+    return calendar;
   }
 
   protected abstract Class<T> getDomainEntityType();

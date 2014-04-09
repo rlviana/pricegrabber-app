@@ -5,7 +5,9 @@
 package net.rlviana.pricegrabber.domain.adapter;
 
 import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +21,7 @@ public class BigDecimalXmlAdapterTest {
 
   protected static final BigDecimal VALUE_DECIMAL = BigDecimal.valueOf(10.10).setScale(2, BigDecimal.ROUND_HALF_UP);
   protected static final BigDecimal VALUE_DECIMAL_KO = BigDecimal.valueOf(10.101);
-  protected static final String VALUE_STRING = "10,10";
+  protected static final String VALUE_STRING = "10.10";
   protected static final String VALUE_STRING_KO = "AAA";
 
   /**

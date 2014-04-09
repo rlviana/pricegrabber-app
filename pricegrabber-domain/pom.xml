@@ -14,6 +14,8 @@
    <properties>
       <plugin.jaxb-xew.version>1.2</plugin.jaxb-xew.version>
       <jaxb-model.outputDirectory>${project.build.directory}/generated-sources/jaxb</jaxb-model.outputDirectory>
+      <jaxb.schemas.directory>${basedir}/src/main/resources/xsd</jaxb.schemas.directory>
+      <jaxb.bindings.directory>${basedir}/src/main/resources/xjb</jaxb.bindings.directory>
    </properties>
    <dependencies>
       <dependency>
@@ -89,8 +91,8 @@
                   </executions>
                   <configuration>
                      <verbose>true</verbose>
-                     <bindingDirectory>src/main/resources/xjb</bindingDirectory>
-                     <schemaDirectory>src/main/resources/xsd</schemaDirectory>
+                     <bindingDirectory>${jaxb.bindings.directory}</bindingDirectory>
+                     <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
                      <generateDirectory>${jaxb-model.outputDirectory}</generateDirectory>
                      <extension>true</extension>
                      <args>
@@ -129,14 +131,14 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                           <bindigDirectory>src/main/resources/xjb</bindigDirectory>
-                           <schemaDirectory>src/main/resources/xsd</schemaDirectory>
+                           <bindigDirectory>${jaxb.bindings.directory}</bindigDirectory>
+                           <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
                            <target>2.1</target>
                            <npa>true</npa>
                            <verbose>true</verbose>
                            <extension>true</extension>
                            <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
-                           <arguments>-b ${project.basedir}/src/main/resources/xjb/jaxb-bindings.xjb
+                           <arguments>-b ${jaxb.schemas.directory}/jaxb-bindings.xjb
                               -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
                         </configuration>
                      </execution>
