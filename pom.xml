@@ -396,5 +396,7 @@
       <module>pricegrabber-model</module>
       <module>pricegrabber-domain</module>
       <module>pricegrabber-converter</module>
+      <module>pricegrabber-ws</module>
+      <module>pricegrabber-rs</module>
    </modules>
 </project>
