@@ -1,6 +1,7 @@
 package net.rlviana.pricegrabber.domain.response;
 
 import javax.xml.bind.annotation.XmlTransient;
+
 import net.rlviana.pricegrabber.domain.entity.EntityBase;
 
 /**
