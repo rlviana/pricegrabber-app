@@ -13,7 +13,7 @@
    <description>Domain model for Pricegrabber application.</description>
    <properties>
       <plugin.jaxb-xew.version>1.2</plugin.jaxb-xew.version>
-      <jaxb-model.outputDirectory>${project.build.directory}/generated-sources/jaxb</jaxb-model.outputDirectory>
+      <jaxb.output.directory>${project.build.directory}/generated-sources/jaxb</jaxb.output.directory>
       <jaxb.schemas.directory>${basedir}/src/main/resources/xsd</jaxb.schemas.directory>
       <jaxb.bindings.directory>${basedir}/src/main/resources/xjb</jaxb.bindings.directory>
    </properties>
@@ -58,7 +58,7 @@
                      </goals>
                      <configuration>
                         <sources>
-                           <source>${jaxb-model.outputDirectory}</source>
+                           <source>${jaxb.output.directory}</source>
                         </sources>
                      </configuration>
                   </execution>
@@ -93,7 +93,7 @@
                      <verbose>true</verbose>
                      <bindingDirectory>${jaxb.bindings.directory}</bindingDirectory>
                      <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
-                     <generateDirectory>${jaxb-model.outputDirectory}</generateDirectory>
+                     <generateDirectory>${jaxb.output.directory}</generateDirectory>
                      <extension>true</extension>
                      <args>
                         <arg>-no-header</arg>
@@ -137,7 +137,7 @@
                            <npa>true</npa>
                            <verbose>true</verbose>
                            <extension>true</extension>
-                           <outputDirectory>${jaxb-model.outputDirectory}</outputDirectory>
+                           <outputDirectory>${jaxb.output.directory}</outputDirectory>
                            <arguments>-b ${jaxb.schemas.directory}/jaxb-bindings.xjb
                               -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
                         </configuration>
