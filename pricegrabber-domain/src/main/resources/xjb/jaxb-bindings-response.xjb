@@ -17,7 +17,8 @@
       <jaxb:serializable uid="1"/>
       <!-- Adds xmlroot -->
       <xjc:simple/>
-   </jaxb:globalBindings> 
+   </jaxb:globalBindings>
+
    <jaxb:bindings schemaLocation="../xsd/response-base.xsd">
       <jaxb:bindings node="//xs:complexType[@name='abstract-response']">
          <jaxb:class ref="net.rlviana.pricegrabber.domain.response.AbstractResponse"/>
@@ -28,10 +29,5 @@
       <jaxb:bindings node="//xs:complexType[@name='abstract-find-response-result']">
          <jaxb:class ref="net.rlviana.pricegrabber.domain.response.AbstractFindResponseResult"/>
       </jaxb:bindings>
-   </jaxb:bindings>
-      <jaxb:bindings schemaLocation="../xsd/search-base.xsd">
-      <jaxb:bindings node="//xs:complexType[@name='abstract-search-criteria']">
-         <jaxb:class ref="net.rlviana.pricegrabber.domain.search.AbstractSearchCriteria"/>
-         </jaxb:bindings>   
    </jaxb:bindings>
 </jaxb:bindings>

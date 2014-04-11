@@ -32,6 +32,7 @@
       <xs:complexContent>
          <xs:extension base="tns:abstract-response-result">
             <xs:sequence>
+               <xs:element name="date" type="xs:dateTime"/>
                <xs:element name="errors" type="xs:boolean"/>
                <xs:element ref="tns:messages"/>
             </xs:sequence>

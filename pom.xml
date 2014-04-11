@@ -14,12 +14,6 @@
    <description>Contains parent porm for pricegrabber project. Inherits from common POM.</description>
    <!-- Build properties -->
    <properties>
-      <!-- JAXB Tools plugins -->
-      <plugin.jaxb2.codehaus.version>1.6</plugin.jaxb2.codehaus.version>
-      <plugin.jaxb2.jvnet.version>0.8.3</plugin.jaxb2.jvnet.version>
-      <plugin.jaxb2.version>1.6</plugin.jaxb2.version>
-      <plugin.jaxws.version>2.2.1</plugin.jaxws.version>
-      <plugin.jaxb2-basics.version>0.6.5</plugin.jaxb2-basics.version>
       <!-- JSON Support Jackson -->
       <jackson2.version>2.2.3</jackson2.version>
       <!-- javax.persistence version -->
@@ -304,20 +298,6 @@
       </dependency>
    </dependencies>
    <build>
-      <pluginManagement>
-         <plugins>
-            <plugin>
-               <groupId>org.jvnet.jaxb2.maven2</groupId>
-               <artifactId>maven-jaxb2-plugin</artifactId>
-               <version>${plugin.jaxb2.jvnet.version}</version>
-            </plugin>
-            <plugin>
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>jaxb2-maven-plugin</artifactId>
-               <version>${plugin.jaxb2.codehaus.version}</version>
-            </plugin>
-         </plugins>
-      </pluginManagement>
       <plugins>
          <!-- Unit tests -->
          <plugin>

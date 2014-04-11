@@ -12,11 +12,29 @@
    <name>pricegrabber-domain</name>
    <description>Domain model for Pricegrabber application.</description>
    <properties>
+      <!-- JAXB Tools plugins -->
+      <plugin.jaxb2.codehaus.version>1.6</plugin.jaxb2.codehaus.version>
+      <plugin.jaxb2.jvnet.version>0.8.3</plugin.jaxb2.jvnet.version>
+      <plugin.jaxb2.version>1.6</plugin.jaxb2.version>
+      <plugin.jaxb2-basics.version>0.6.5</plugin.jaxb2-basics.version>
       <plugin.jaxb-xew.version>1.2</plugin.jaxb-xew.version>
+      <plugin.cxf-xjc.version>2.7.0</plugin.cxf-xjc.version>
+      <!-- XJC dependencies -->
+      <jaxb.xjc.version>2.2.7</jaxb.xjc.version>
+      <!-- JAXB process configuration -->
       <jaxb.output.directory>${project.build.directory}/generated-sources/jaxb</jaxb.output.directory>
       <jaxb.schemas.directory>${basedir}/src/main/resources/xsd</jaxb.schemas.directory>
       <jaxb.bindings.directory>${basedir}/src/main/resources/xjb</jaxb.bindings.directory>
    </properties>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+            <version>${jaxb.xjc.version}</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
    <dependencies>
       <dependency>
          <groupId>org.slf4j</groupId>
@@ -45,6 +63,93 @@
    <build>
       <pluginManagement>
          <plugins>
+            <!-- Kenai JAXB plugin declaration -->
+            <plugin>
+               <groupId>org.jvnet.jaxb2.maven2</groupId>
+               <artifactId>maven-jaxb2-plugin</artifactId>
+               <version>${plugin.jaxb2.jvnet.version}</version>
+               <configuration>
+                  <verbose>true</verbose>
+                  <bindingDirectory>${jaxb.bindings.directory}</bindingDirectory>
+                  <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
+                  <generateDirectory>${jaxb.output.directory}</generateDirectory>
+                  <extension>true</extension>
+                  <plugins>
+                     <plugin>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics</artifactId>
+                        <version>${plugin.jaxb2-basics.version}</version>
+                     </plugin>
+                     <plugin>
+                        <groupId>com.github.jaxb-xew-plugin</groupId>
+                        <artifactId>jaxb-xew-plugin</artifactId>
+                        <version>${plugin.jaxb-xew.version}</version>
+                     </plugin>
+                  </plugins>
+               </configuration>
+               <dependencies>
+               <dependency>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-xjc</artifactId>
+                  <version>${jaxb.xjc.version}</version>
+               </dependency>
+               </dependencies>
+            </plugin>
+            <!-- Codehaus JAXB plugin declaration -->
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>jaxb2-maven-plugin</artifactId>
+               <version>${plugin.jaxb2.codehaus.version}</version>
+               <configuration>
+                  <outputDirectory>${jaxb.output.directory}</outputDirectory>
+                  <bindigDirectory>${jaxb.bindings.directory}</bindigDirectory>
+                  <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
+                  <target>2.2</target>
+                  <npa>true</npa>
+                  <verbose>true</verbose>
+                  <extension>true</extension>
+                  <arguments>-b ${jaxb.schemas.directory}/jaxb-bindings.xjb -no-header -Xxew
+                     -Xxew:instantiate lazy -Xxew:delete</arguments>
+                  <plugins>
+                     <plugin>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics</artifactId>
+                        <version>${plugin.jaxb2-basics.version}</version>
+                     </plugin>
+                  </plugins>
+               </configuration>
+               <dependencies>
+                  <dependency>
+                     <groupId>com.github.jaxb-xew-plugin</groupId>
+                     <artifactId>jaxb-xew-plugin</artifactId>
+                     <version>${plugin.jaxb-xew.version}</version>
+                  </dependency>
+               <dependency>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-xjc</artifactId>
+                  <version>${jaxb.xjc.version}</version>
+               </dependency>
+                  
+               </dependencies>
+            </plugin>
+            <!-- CXF JAXB plugin declaration -->
+            <plugin>
+               <groupId>org.apache.cxf</groupId>
+               <artifactId>cxf-xjc-plugin</artifactId>
+               <version>${plugin.cxf-xjc.version}</version>
+               <dependencies>
+                  <dependency>
+                     <groupId>com.github.jaxb-xew-plugin</groupId>
+                     <artifactId>jaxb-xew-plugin</artifactId>
+                     <version>${plugin.jaxb-xew.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>com.sun.xml.bind</groupId>
+                     <artifactId>jaxb-xjc</artifactId>
+                     <version>${jaxb.xjc.version}</version>
+                  </dependency>
+               </dependencies>
+            </plugin>
             <!-- add sources (classes generated inside the .metamodel folder) to the build -->
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
@@ -87,28 +192,19 @@
                            <goal>generate</goal>
                         </goals>
                         <phase>generate-sources</phase>
+                        <configuration>
+                           <bindingIncludes>
+                              <include>jaxb-bindings.xjb</include>
+                           </bindingIncludes>
+                           <args>
+                              <arg>-no-header</arg>
+                              <arg>-Xxew</arg>
+                              <arg>-Xxew:instantiate lazy</arg>
+                              <arg>-Xxew:delete</arg>
+                           </args>
+                        </configuration>
                      </execution>
                   </executions>
-                  <configuration>
-                     <verbose>true</verbose>
-                     <bindingDirectory>${jaxb.bindings.directory}</bindingDirectory>
-                     <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
-                     <generateDirectory>${jaxb.output.directory}</generateDirectory>
-                     <extension>true</extension>
-                     <args>
-                        <arg>-no-header</arg>
-                        <arg>-Xxew</arg>
-                        <arg>-Xxew:instantiate lazy</arg>
-                        <arg>-Xxew:delete</arg>
-                     </args>
-                     <plugins>
-                        <plugin>
-                           <groupId>com.github.jaxb-xew-plugin</groupId>
-                           <artifactId>jaxb-xew-plugin</artifactId>
-                           <version>${plugin.jaxb-xew.version}</version>
-                        </plugin>
-                     </plugins>
-                  </configuration>
                </plugin>
                <plugin>
                   <groupId>org.codehaus.mojo</groupId>
@@ -130,26 +226,114 @@
                            <goal>xjc</goal>
                         </goals>
                         <phase>generate-sources</phase>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>build-helper-maven-plugin</artifactId>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>cxf</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.cxf</groupId>
+                  <artifactId>cxf-xjc-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                           <goal>xsdtojava</goal>
+                        </goals>
                         <configuration>
-                           <bindigDirectory>${jaxb.bindings.directory}</bindigDirectory>
-                           <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
-                           <target>2.1</target>
-                           <npa>true</npa>
-                           <verbose>true</verbose>
-                           <extension>true</extension>
-                           <outputDirectory>${jaxb.output.directory}</outputDirectory>
-                           <arguments>-b ${jaxb.schemas.directory}/jaxb-bindings.xjb
-                              -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
+                           <sourceRoot>${jaxb.output.directory}</sourceRoot>
+                           <xsdOptions>  
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/entity-base.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-base.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption>
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/response-base.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-response.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption>
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/response-common.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-response.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption> 
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/response-core.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-response.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption>
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/search-base.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-search.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption>
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/search-common.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-search.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption> 
+                              <xsdOption>
+                                 <xsd>${jaxb.schemas.directory}/search-core.xsd</xsd>
+                                 <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-search.xjb</bindingFile>
+                                 <extension>true</extension>
+                                 <extensionArgs>
+                                    <extensionArg>-no-header</extensionArg>
+                                    <extensionArg>-Xxew</extensionArg>
+                                    <extensionArg>-Xxew:instantiate lazy</extensionArg>
+                                    <extensionArg>-Xxew:delete</extensionArg>
+                                 </extensionArgs>
+                              </xsdOption>                              
+                           </xsdOptions>
                         </configuration>
                      </execution>
                   </executions>
-                  <dependencies>
-                     <dependency>
-                        <groupId>com.github.jaxb-xew-plugin</groupId>
-                        <artifactId>jaxb-xew-plugin</artifactId>
-                        <version>${plugin.jaxb-xew.version}</version>
-                     </dependency>
-                  </dependencies>
                </plugin>
                <plugin>
                   <groupId>org.codehaus.mojo</groupId>
