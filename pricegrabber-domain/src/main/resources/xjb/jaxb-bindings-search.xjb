@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jaxb:bindings jaxb:extensionBindingPrefixes="xjc" version="2.1"
-   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
-   xmlns:xs="http://www.w3.org/2001/XMLSchema" xs:schemaLocation=" http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
->
-   <jaxb:bindings schemaLocation="../xsd/search-base.xsd">
-      <jaxb:bindings node="//xs:complexType[@name='abstract-search-criteria']">
-         <jaxb:class ref="net.rlviana.pricegrabber.domain.search.AbstractSearchCriteria"/>
-      </jaxb:bindings>
-   </jaxb:bindings>
-</jaxb:bindings>
+<jxb:bindings jxb:extensionBindingPrefixes="xjc" version="2.1"
+   xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   xs:schemaLocation=" http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
+   <jxb:bindings scd="x-schema::tns" xmlns:tns="http://pricegrabber.rlviana.net/domain/search">
+      <jxb:bindings scd="~tns:abstract-search-criteria">
+         <jxb:class ref="net.rlviana.pricegrabber.domain.search.AbstractSearchCriteria"/>
+      </jxb:bindings>
+   </jxb:bindings>
+</jxb:bindings>

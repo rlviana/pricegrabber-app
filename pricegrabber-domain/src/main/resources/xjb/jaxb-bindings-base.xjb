@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jaxb:bindings jaxb:extensionBindingPrefixes="xjc" version="2.1"
-   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+<jxb:bindings jxb:extensionBindingPrefixes="xjc" version="2.1"
+   xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
    xmlns:xs="http://www.w3.org/2001/XMLSchema" xs:schemaLocation=" http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
 >
-   <jaxb:globalBindings>
+   <jxb:globalBindings>
       <!-- use Calendar instead of XMLGregorianCalendar -->
-      <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
+      <jxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
          parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
-      <jaxb:javaType name="java.util.Calendar" xmlType="xs:date"
+      <jxb:javaType name="java.util.Calendar" xmlType="xs:date"
          parseMethod="javax.xml.bind.DatatypeConverter.parseDate" printMethod="javax.xml.bind.DatatypeConverter.printDate"/>
-      <jaxb:javaType name="java.util.Calendar" xmlType="xs:time"
+      <jxb:javaType name="java.util.Calendar" xmlType="xs:time"
          parseMethod="javax.xml.bind.DatatypeConverter.parseTime" printMethod="javax.xml.bind.DatatypeConverter.printTime"/>
       <!-- BigDecimal xs:decimal -->
       <xjc:javaType name="java.math.BigDecimal" adapter="net.rlviana.pricegrabber.domain.adapter.BigDecimalXmlAdapter"
          xmlType="xs:decimal"/>
-      <jaxb:serializable uid="1"/>
+      <jxb:serializable uid="1"/>
       <!-- Adds xmlroot -->
       <xjc:simple/>
-   </jaxb:globalBindings> 
-</jaxb:bindings>
+   </jxb:globalBindings> 
+</jxb:bindings>

@@ -32,6 +32,7 @@
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-xjc</artifactId>
             <version>${jaxb.xjc.version}</version>
+            <scope>provided</scope>
          </dependency>
       </dependencies>
    </dependencyManagement>
@@ -102,14 +103,11 @@
                <version>${plugin.jaxb2.codehaus.version}</version>
                <configuration>
                   <outputDirectory>${jaxb.output.directory}</outputDirectory>
-                  <bindigDirectory>${jaxb.bindings.directory}</bindigDirectory>
                   <schemaDirectory>${jaxb.schemas.directory}</schemaDirectory>
                   <target>2.2</target>
                   <npa>true</npa>
                   <verbose>true</verbose>
                   <extension>true</extension>
-                  <arguments>-b ${jaxb.schemas.directory}/jaxb-bindings.xjb -no-header -Xxew
-                     -Xxew:instantiate lazy -Xxew:delete</arguments>
                   <plugins>
                      <plugin>
                         <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -226,6 +224,9 @@
                            <goal>xjc</goal>
                         </goals>
                         <phase>generate-sources</phase>
+                        <configuration>
+                        <arguments>-b ${jaxb.bindings.directory}/jaxb-bindings.xjb -no-header -Xxew -Xxew:instantiate lazy -Xxew:delete</arguments>
+                        </configuration>
                      </execution>
                   </executions>
                </plugin>
@@ -252,7 +253,7 @@
                         </goals>
                         <configuration>
                            <sourceRoot>${jaxb.output.directory}</sourceRoot>
-                           <xsdOptions>  
+                           <xsdOptions>
                               <xsdOption>
                                  <xsd>${jaxb.schemas.directory}/entity-base.xsd</xsd>
                                  <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-base.xjb</bindingFile>
@@ -263,7 +264,7 @@
                                     <extensionArg>-Xxew:instantiate lazy</extensionArg>
                                     <extensionArg>-Xxew:delete</extensionArg>
                                  </extensionArgs>
-                              </xsdOption>
+                              </xsdOption> 
                               <xsdOption>
                                  <xsd>${jaxb.schemas.directory}/response-base.xsd</xsd>
                                  <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-response.xjb</bindingFile>
@@ -274,7 +275,7 @@
                                     <extensionArg>-Xxew:instantiate lazy</extensionArg>
                                     <extensionArg>-Xxew:delete</extensionArg>
                                  </extensionArgs>
-                              </xsdOption>
+                              </xsdOption> 
                               <xsdOption>
                                  <xsd>${jaxb.schemas.directory}/response-common.xsd</xsd>
                                  <bindingFile>${jaxb.bindings.directory}/jaxb-bindings-response.xjb</bindingFile>
