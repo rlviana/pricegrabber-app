@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/ws/service/siteItem" xmlns:search="http://pricegrabber.rlviana.net/domain/search/core"
+   xmlns:response="http://pricegrabber.rlviana.net/domain/response/core" xmlns:domain="http://pricegrabber.rlviana.net/domain/entity/core"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+   targetNamespace="http://pricegrabber.rlviana.net/ws/service/siteItem" elementFormDefault="qualified"
+>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/core"
+      schemaLocation="entity-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/search/core"
+      schemaLocation="search-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/core"
+      schemaLocation="response-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/common"
+      schemaLocation="response-common.xsd"/>
+   <xs:element name="createSiteItem" type="tns:createSiteItem"/>
+   <xs:element name="createSiteItemResponse" type="tns:createSiteItemResponse"/>
+   <xs:element name="deleteSiteItem" type="tns:deleteSiteItem"/>
+   <xs:element name="deleteSiteItemResponse" type="tns:deleteSiteItemResponse"/>
+   <xs:element name="findSiteItemById" type="tns:findSiteItemById"/>
+   <xs:element name="findSiteItemByIdResponse" type="tns:findSiteItemByIdResponse"/>
+   <xs:element name="listSiteItems" type="tns:listSiteItems"/>
+   <xs:element name="listSiteItemsResponse" type="tns:listSiteItemsResponse"/>
+   <xs:element name="searchSiteItems" type="tns:searchSiteItem"/>
+   <xs:element name="searchSiteItemsResponse" type="tns:searchSiteItemResponse"/>
+   <xs:element name="updateSiteItem" type="tns:updateSiteItem"/>
+   <xs:element name="updateSiteItemResponse" type="tns:updateSiteItemResponse"/>
+   <xs:complexType name="updateSiteItem">
+      <xs:sequence>
+         <xs:element name="siteItem" type="domain:site-item" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="updateSiteItemResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findSiteItemById">
+      <xs:sequence>
+         <xs:element name="siteItemId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findSiteItemByIdResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchSiteItem">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:site-item-search-criteria" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchSiteItemResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-find-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listSiteItems">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:site-item-search-criteria" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listSiteItemsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-find-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deleteSiteItem">
+      <xs:sequence>
+         <xs:element name="siteItemId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deleteSiteItemResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createSiteItem">
+      <xs:sequence>
+         <xs:element name="siteItem" type="domain:site-item" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createSiteItemResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

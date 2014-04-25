@@ -1,11 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>net.rlviana.pricegrabber</groupId>
-    <artifactId>pricegrabber</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>pricegrabber-ws</artifactId>
-  <name>pricegrabber-ws</name>
-  <description>Web Services offered by pricegrabber</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>net.rlviana.pricegrabber</groupId>
+      <artifactId>pricegrabber</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+   </parent>
+   <artifactId>pricegrabber-ws</artifactId>
+   <name>pricegrabber-ws</name>
+   <description>Web Services offered by pricegrabber</description>
+   <packaging>pom</packaging>
+   <properties>
+      <plugin.jaxws-jvnet.version>2.3</plugin.jaxws-jvnet.version>
+      <plugin.jaxws.version>1.12</plugin.jaxws.version>
+      <cxf.version>2.7.8</cxf.version>
+      <jaxws.version>2.2.8</jaxws.version>
+   </properties>
+   <dependencies>
+   <dependency>
+   <groupId>net.rlviana.pricegrabber</groupId>
+   <artifactId>pricegrabber-domain</artifactId>
+   </dependency>
+   </dependencies>
+   <modules>
+      <module>pricegrabber-ws-impl</module>
+   </modules>
 </project>

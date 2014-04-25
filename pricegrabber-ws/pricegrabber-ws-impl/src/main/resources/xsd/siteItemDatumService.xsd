@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/ws/service/siteItemDatum"
+   xmlns:search="http://pricegrabber.rlviana.net/domain/search/core" xmlns:response="http://pricegrabber.rlviana.net/domain/response/core"
+   xmlns:domain="http://pricegrabber.rlviana.net/domain/entity/core" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   version="1.0" targetNamespace="http://pricegrabber.rlviana.net/ws/service/siteItemDatum"
+   elementFormDefault="qualified"
+>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/core"
+      schemaLocation="entity-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/search/core"
+      schemaLocation="search-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/core"
+      schemaLocation="response-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/common"
+      schemaLocation="response-common.xsd"/>
+   <xs:element name="createSiteItemDatum" type="tns:createSiteItemDatum"/>
+   <xs:element name="createSiteItemDatumResponse" type="tns:createSiteItemDatumResponse"/>
+   <xs:element name="deleteSiteItemDatum" type="tns:deleteSiteItemDatum"/>
+   <xs:element name="deleteSiteItemDatumResponse" type="tns:deleteSiteItemDatumResponse"/>
+   <xs:element name="findSiteItemDatumById" type="tns:findSiteItemDatumById"/>
+   <xs:element name="findSiteItemDatumByIdResponse" type="tns:findSiteItemDatumByIdResponse"/>
+   <xs:element name="listSiteItemData" type="tns:listSiteItemData"/>
+   <xs:element name="listSiteItemDataResponse" type="tns:listSiteItemDataResponse"/>
+   <xs:element name="searchSiteItemData" type="tns:searchSiteItemData"/>
+   <xs:element name="searchSiteItemDataResponse" type="tns:searchSiteItemDataResponse"/>
+   <xs:element name="updateSiteItemDatum" type="tns:updateSiteItemDatum"/>
+   <xs:element name="updateSiteItemDatumResponse" type="tns:updateSiteItemDatumResponse"/>
+   <xs:complexType name="updateSiteItemDatum">
+      <xs:sequence>
+         <xs:element name="siteItemDatum" type="domain:site-item-datum" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="updateSiteItemDatumResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findSiteItemDatumById">
+      <xs:sequence>
+         <xs:element name="siteItemDatumId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findSiteItemDatumByIdResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchSiteItemData">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:site-item-datum-search-criteria"
+            minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchSiteItemDataResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-find-response"
+            minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listSiteItemData">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:site-item-datum-search-criteria"
+            minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listSiteItemDataResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-find-response"
+            minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deleteSiteItemDatum">
+      <xs:sequence>
+         <xs:element name="siteItemDatumId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deleteSiteItemDatumResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createSiteItemDatum">
+      <xs:sequence>
+         <xs:element name="siteItemDatum" type="domain:site-item-datum" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createSiteItemDatumResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:site-item-datum-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

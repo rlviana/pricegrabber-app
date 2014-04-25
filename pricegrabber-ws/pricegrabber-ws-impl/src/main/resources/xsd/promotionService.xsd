@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://pricegrabber.rlviana.net/ws/service/promotion" xmlns:search="http://pricegrabber.rlviana.net/domain/search/core"
+   xmlns:response="http://pricegrabber.rlviana.net/domain/response/core" xmlns:domain="http://pricegrabber.rlviana.net/domain/entity/core"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+   targetNamespace="http://pricegrabber.rlviana.net/ws/service/promotion" elementFormDefault="qualified"
+>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/entity/core"
+      schemaLocation="entity-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/search/core"
+      schemaLocation="search-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/core"
+      schemaLocation="response-core.xsd"/>
+   <xs:import namespace="http://pricegrabber.rlviana.net/domain/response/common"
+      schemaLocation="response-common.xsd"/>
+   <xs:element name="createPromotion" type="tns:createPromotion"/>
+   <xs:element name="createPromotionResponse" type="tns:createPromotionResponse"/>
+   <xs:element name="deletePromotion" type="tns:deletePromotion"/>
+   <xs:element name="deletePromotionResponse" type="tns:deletePromotionResponse"/>
+   <xs:element name="findPromotionById" type="tns:findPromotionById"/>
+   <xs:element name="findPromotionByIdResponse" type="tns:findPromotionByIdResponse"/>
+   <xs:element name="listPromotions" type="tns:listPromotions"/>
+   <xs:element name="listPromotionsResponse" type="tns:listPromotionsResponse"/>
+   <xs:element name="searchPromotions" type="tns:searchPromotion"/>
+   <xs:element name="searchPromotionsResponse" type="tns:searchPromotionResponse"/>
+   <xs:element name="updatePromotion" type="tns:updatePromotion"/>
+   <xs:element name="updatePromotionResponse" type="tns:updatePromotionResponse"/>
+   <xs:complexType name="updatePromotion">
+      <xs:sequence>
+         <xs:element name="promotion" type="domain:promotion" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="updatePromotionResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findPromotionById">
+      <xs:sequence>
+         <xs:element name="promotionId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="findPromotionByIdResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchPromotion">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:promotion-search-criteria" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="searchPromotionResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-find-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listPromotions">
+      <xs:sequence>
+         <xs:element name="criteria" type="search:promotion-search-criteria" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listPromotionsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-find-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deletePromotion">
+      <xs:sequence>
+         <xs:element name="promotionId" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="deletePromotionResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createPromotion">
+      <xs:sequence>
+         <xs:element name="promotion" type="domain:promotion" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="createPromotionResponse">
+      <xs:sequence>
+         <xs:element name="return" type="response:promotion-response" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

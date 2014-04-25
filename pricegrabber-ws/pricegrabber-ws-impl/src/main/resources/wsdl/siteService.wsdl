@@ -1,0 +1,139 @@
+<wsdl:definitions
+   xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+   xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+   xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns="http://pricegrabber.rlviana.net/ws/service/site" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://pricegrabber.rlviana.net/ws/service/site"
+   name="SiteService"
+>
+   <wsdl:types>
+      <xsd:schema>
+         <xsd:import namespace="http://pricegrabber.rlviana.net/ws/service/site"
+            schemaLocation="../xsd/siteService.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="list">
+      <wsdl:part name="parameters" element="tns:listSites"/>
+   </wsdl:message>
+   <wsdl:message name="listResponse">
+      <wsdl:part name="parameters" element="tns:listSitesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="delete">
+      <wsdl:part name="parameters" element="tns:deleteSite"/>
+   </wsdl:message>
+   <wsdl:message name="deleteResponse">
+      <wsdl:part name="parameters" element="tns:deleteSiteResponse"/>
+   </wsdl:message>
+   <wsdl:message name="search">
+      <wsdl:part name="parameters" element="tns:searchSites"/>
+   </wsdl:message>
+   <wsdl:message name="searchResponse">
+      <wsdl:part name="parameters" element="tns:searchSitesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="create">
+      <wsdl:part name="parameters" element="tns:createSite"/>
+   </wsdl:message>
+   <wsdl:message name="createResponse">
+      <wsdl:part name="parameters" element="tns:createSiteResponse"/>
+   </wsdl:message>
+   <wsdl:message name="update">
+      <wsdl:part name="parameters" element="tns:updateSite"/>
+   </wsdl:message>
+   <wsdl:message name="updateResponse">
+      <wsdl:part name="parameters" element="tns:updateSiteResponse"/>
+   </wsdl:message>
+   <wsdl:message name="findById">
+      <wsdl:part name="parameters" element="tns:findSiteById"/>
+   </wsdl:message>
+   <wsdl:message name="findByIdResponse">
+      <wsdl:part name="parameters" element="tns:findSiteByIdResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="SitePortType">
+      <wsdl:operation name="listSites">
+         <wsdl:input message="tns:list"/>
+         <wsdl:output message="tns:listResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSite">
+         <wsdl:input message="tns:delete"/>
+         <wsdl:output message="tns:deleteResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="searchSites">
+         <wsdl:input message="tns:search"/>
+         <wsdl:output message="tns:searchResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="createSite">
+         <wsdl:input message="tns:create"/>
+         <wsdl:output message="tns:createResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="updateSite">
+         <wsdl:input message="tns:update"/>
+         <wsdl:output message="tns:updateResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="findSiteById">
+         <wsdl:input message="tns:findById"/>
+         <wsdl:output message="tns:findByIdResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="SiteBinding" type="tns:SitePortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="listSites">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/listSites"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSite">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/deleteSite"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchSites">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/searchSites"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createSite">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/createSite"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateSite">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/updateSite"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="findSiteById">
+         <soap:operation soapAction="http://pricegrabber.rlviana.net/ws/service/site/findSiteById"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="SiteService">
+      <wsdl:port name="SitePort" binding="tns:SiteBinding">
+         <soap:address location="/soap/site"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

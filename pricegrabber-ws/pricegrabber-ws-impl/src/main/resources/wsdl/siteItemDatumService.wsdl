@@ -1,0 +1,145 @@
+<wsdl:definitions
+   xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+   xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+   xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns="http://pricegrabber.rlviana.net/ws/service/siteItemDatum" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://pricegrabber.rlviana.net/ws/service/siteItemDatum"
+   name="SiteItemDatumService"
+>
+   <wsdl:types>
+      <xsd:schema>
+         <xsd:import namespace="http://pricegrabber.rlviana.net/ws/service/siteItemDatum"
+            schemaLocation="../xsd/siteItemDatumService.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="list">
+      <wsdl:part name="parameters" element="tns:listSiteItemData"/>
+   </wsdl:message>
+   <wsdl:message name="listResponse">
+      <wsdl:part name="parameters" element="tns:listSiteItemDataResponse"/>
+   </wsdl:message>
+   <wsdl:message name="delete">
+      <wsdl:part name="parameters" element="tns:deleteSiteItemDatum"/>
+   </wsdl:message>
+   <wsdl:message name="deleteResponse">
+      <wsdl:part name="parameters" element="tns:deleteSiteItemDatumResponse"/>
+   </wsdl:message>
+   <wsdl:message name="search">
+      <wsdl:part name="parameters" element="tns:searchSiteItemData"/>
+   </wsdl:message>
+   <wsdl:message name="searchResponse">
+      <wsdl:part name="parameters" element="tns:searchSiteItemDataResponse"/>
+   </wsdl:message>
+   <wsdl:message name="create">
+      <wsdl:part name="parameters" element="tns:createSiteItemDatum"/>
+   </wsdl:message>
+   <wsdl:message name="createResponse">
+      <wsdl:part name="parameters" element="tns:createSiteItemDatumResponse"/>
+   </wsdl:message>
+   <wsdl:message name="update">
+      <wsdl:part name="parameters" element="tns:updateSiteItemDatum"/>
+   </wsdl:message>
+   <wsdl:message name="updateResponse">
+      <wsdl:part name="parameters" element="tns:updateSiteItemDatumResponse"/>
+   </wsdl:message>
+   <wsdl:message name="findById">
+      <wsdl:part name="parameters" element="tns:findSiteItemDatumById"/>
+   </wsdl:message>
+   <wsdl:message name="findByIdResponse">
+      <wsdl:part name="parameters" element="tns:findSiteItemDatumByIdResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="SiteItemDatumPortType">
+      <wsdl:operation name="listSiteItemDatums">
+         <wsdl:input message="tns:list"/>
+         <wsdl:output message="tns:listResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSiteItemDatum">
+         <wsdl:input message="tns:delete"/>
+         <wsdl:output message="tns:deleteResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="searchSiteItemDatums">
+         <wsdl:input message="tns:search"/>
+         <wsdl:output message="tns:searchResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="createSiteItemDatum">
+         <wsdl:input message="tns:create"/>
+         <wsdl:output message="tns:createResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="updateSiteItemDatum">
+         <wsdl:input message="tns:update"/>
+         <wsdl:output message="tns:updateResponse"/>
+      </wsdl:operation>
+      <wsdl:operation name="findSiteItemDatumById">
+         <wsdl:input message="tns:findById"/>
+         <wsdl:output message="tns:findByIdResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="SiteItemDatumBinding" type="tns:SiteItemDatumPortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="listSiteItemDatums">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/listSiteItemDatums"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSiteItemDatum">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/deleteSiteItemDatum"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchSiteItemDatums">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/searchSiteItemDatums"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createSiteItemDatum">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/createSiteItemDatum"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateSiteItemDatum">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/updateSiteItemDatum"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="findSiteItemDatumById">
+         <soap:operation
+            soapAction="http://pricegrabber.rlviana.net/ws/service/siteItemDatum/findSiteItemDatumById"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="SiteItemDatumService">
+      <wsdl:port name="SiteItemDatumPort" binding="tns:SiteItemDatumBinding">
+         <soap:address location="/soap/siteItemDatum"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
