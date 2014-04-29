@@ -5,11 +5,7 @@ import javax.xml.ws.BindingType;
 
 import net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum;
 import net.rlviana.pricegrabber.domain.response.core.SiteItemDatumResponse;
-import net.rlviana.pricegrabber.ws.service.siteitemdatum.ListSiteItemData;
-import net.rlviana.pricegrabber.ws.service.siteitemdatum.ListSiteItemDataResponse;
-import net.rlviana.pricegrabber.ws.service.siteitemdatum.SearchSiteItemData;
-import net.rlviana.pricegrabber.ws.service.siteitemdatum.SearchSiteItemDataResponse;
-import net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType;
+import net.rlviana.pricegrabber.ws.service.exception.ServiceException;
 
 @WebService(portName = "SiteItemDatumPort", serviceName = "SiteItemDatumService",
     targetNamespace = "http://pricegrabber.rlviana.net/ws/service/siteItemDatum")
@@ -23,60 +19,60 @@ public class SiteItemDatumPortTypeImpl
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#listSiteItemDatums(net.rlviana.pricegrabber.ws.service.siteitemdatum.ListSiteItemData)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#listSiteItemDatums(net.rlviana.pricegrabber.ws.service.siteItemDatum.ListSiteItemData)
    */
   @Override
-  public ListSiteItemDataResponse listSiteItemDatums(ListSiteItemData parameters) {
+  public ListSiteItemDataResponse listSiteItemDatums(ListSiteItemData parameters) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#createSiteItemDatum(net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#createSiteItemDatum(net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum)
    */
   @Override
-  public SiteItemDatumResponse createSiteItemDatum(SiteItemDatum siteItemDatum) {
+  public SiteItemDatumResponse createSiteItemDatum(SiteItemDatum siteItemDatum) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#findSiteItemDatumById(java.lang.Long)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#findSiteItemDatumById(java.lang.Long)
    */
   @Override
-  public SiteItemDatumResponse findSiteItemDatumById(Long siteItemDatumId) {
+  public SiteItemDatumResponse findSiteItemDatumById(Long siteItemDatumId) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#searchSiteItemDatums(net.rlviana.pricegrabber.ws.service.siteitemdatum.SearchSiteItemData)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#searchSiteItemDatums(net.rlviana.pricegrabber.ws.service.siteItemDatum.SearchSiteItemData)
    */
   @Override
-  public SearchSiteItemDataResponse searchSiteItemDatums(SearchSiteItemData parameters) {
+  public SearchSiteItemDataResponse searchSiteItemDatums(SearchSiteItemData parameters) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#deleteSiteItemDatum(java.lang.Long)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#deleteSiteItemDatum(java.lang.Long)
    */
   @Override
-  public SiteItemDatumResponse deleteSiteItemDatum(Long siteItemDatumId) {
+  public SiteItemDatumResponse deleteSiteItemDatum(Long siteItemDatumId) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
 
   /**
    * 
-   * @see net.rlviana.pricegrabber.ws.service.siteitemdatum.SiteItemDatumPortType#updateSiteItemDatum(net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum)
+   * @see net.rlviana.pricegrabber.ws.service.siteItemDatum.SiteItemDatumPortType#updateSiteItemDatum(net.rlviana.pricegrabber.domain.entity.core.SiteItemDatum)
    */
   @Override
-  public SiteItemDatumResponse updateSiteItemDatum(SiteItemDatum siteItemDatum) {
+  public SiteItemDatumResponse updateSiteItemDatum(SiteItemDatum siteItemDatum) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }

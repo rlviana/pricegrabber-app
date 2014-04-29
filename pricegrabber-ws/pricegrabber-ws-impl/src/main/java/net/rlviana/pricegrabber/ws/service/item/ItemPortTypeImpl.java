@@ -7,6 +7,7 @@ import net.rlviana.pricegrabber.domain.entity.core.Item;
 import net.rlviana.pricegrabber.domain.response.core.ItemFindResponse;
 import net.rlviana.pricegrabber.domain.response.core.ItemResponse;
 import net.rlviana.pricegrabber.domain.search.core.ItemSearchCriteria;
+import net.rlviana.pricegrabber.ws.service.exception.ServiceException;
 
 @WebService(portName = "ItemPort", serviceName = "ItemService",
     targetNamespace = "http://pricegrabber.rlviana.net/ws/service/item",
@@ -24,7 +25,7 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#searchItems(net.rlviana.pricegrabber.domain.search.core.ItemSearchCriteria)
    */
   @Override
-  public ItemFindResponse searchItems(ItemSearchCriteria criteria) {
+  public ItemFindResponse searchItems(ItemSearchCriteria criteria) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
@@ -34,7 +35,7 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#updateItem(net.rlviana.pricegrabber.domain.entity.core.Item)
    */
   @Override
-  public ItemResponse updateItem(Item item) {
+  public ItemResponse updateItem(Item item) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
@@ -44,7 +45,7 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#createItem(net.rlviana.pricegrabber.domain.entity.core.Item)
    */
   @Override
-  public ItemResponse createItem(Item item) {
+  public ItemResponse createItem(Item item) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
@@ -54,7 +55,7 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#deleteItem(java.lang.Long)
    */
   @Override
-  public ItemResponse deleteItem(Long itemId) {
+  public ItemResponse deleteItem(Long itemId) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
@@ -64,7 +65,9 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#listItems(net.rlviana.pricegrabber.domain.search.core.ItemSearchCriteria)
    */
   @Override
-  public ItemFindResponse listItems(ItemSearchCriteria criteria) {
+  public ItemFindResponse listItems(ItemSearchCriteria criteria) throws ServiceException
+
+  {
     // TODO Auto-generated method stub
     return null;
   }
@@ -74,7 +77,7 @@ public class ItemPortTypeImpl
    * @see net.rlviana.pricegrabber.ws.service.item.ItemPortType#findItemById(java.lang.Long)
    */
   @Override
-  public ItemResponse findItemById(Long itemId) {
+  public ItemResponse findItemById(Long itemId) throws ServiceException {
     // TODO Auto-generated method stub
     return null;
   }
